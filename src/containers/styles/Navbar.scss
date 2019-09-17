@@ -2,11 +2,13 @@
 
 .navbar {
     display: flex;
-    border-bottom: 1px solid rgb(160, 212, 76);
+    justify-content: space-between;
+    border-bottom: 1px solid var(--main-text-color);
     height: 5vh;
     min-height: 45px;
-    --main-text-color: rgb(70, 70, 126);
-    --second-border-color: rgba(109, 148, 185, 0.377);
+    width: 100%;
+    --main-text-color: rgb(160, 212, 76);
+    --second-border-color: rgba(199, 206, 184, 0.5);
 
     .left-menu {
         display: flex;
@@ -15,6 +17,8 @@
 
     nav {
         width: 40%;
+        max-width: 350px;
+        font: 20px 'Titillium Web', sans-serif;
         
         ul {
             display: flex;
@@ -27,13 +31,25 @@
             padding: 0;
             flex-wrap: wrap;
 
-            li{
-                border-left: 1px solid var(--second-border-color);
+
+            a:hover {
+                background-color: rgba(80, 100, 110, 0.075);
+                transition: background-color 0.1s;
+                transition-timing-function: cubic-bezier(.45,.05,.93,.56)
+                                 
             }
             
-            a:hover {
-                background-color: rgba(116, 171, 202, 0.438);
+            a:hover li {
+                transition: height .1s, border-left .2s; 
+                height: 0%;
+                border-left: 1px solid transparent;
             }
+            a:hover + a li {
+                transition: height .1s, border-left .2s; 
+                height: 0%;
+                border-left: 1px solid transparent;
+            }
+            
 
             a {
                 display: flex;
@@ -52,7 +68,7 @@
                     height: 20%;
                     align-items: center;
                     justify-content: space-around;
-
+                    border-left: 1px solid var(--second-border-color);
                 }
 
 
@@ -63,3 +79,4 @@
 .active-tab {
     font-weight: bold;
 }
+
