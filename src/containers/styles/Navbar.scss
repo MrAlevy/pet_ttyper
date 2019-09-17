@@ -1,0 +1,58 @@
+.navbar {
+    display: flex;
+    border-bottom: 1px solid black;
+    height: 5vh;
+    min-height: 45px;
+    --main-text-color: darkblue;
+    --second-border-color: rgb(255, 0, 0);
+
+    .left-menu {
+        display: flex;
+        width: 60%;
+    }
+
+    nav {
+        width: 40%;
+        border-left: 1px solid black;
+        
+
+        ul {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            list-style: none;
+            align-items: stretch;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+
+
+            
+            a:hover {
+                background-color: rgba(116, 171, 202, 0.438);
+            }
+
+            a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--main-text-color);
+                flex: 1;
+                text-decoration: none;
+
+
+
+                li {
+                    display: inline-block;
+                    width: 100%;
+                    height: 40%;
+                    
+
+
+                }
+
+
+            }
+        }
+    }
+}
