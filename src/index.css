@@ -7,10 +7,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   justify-content: center;
+  background-color: rgb(244, 251, 243);
 }
 
 #root {
   width: 1000px;
+
  
 }
 

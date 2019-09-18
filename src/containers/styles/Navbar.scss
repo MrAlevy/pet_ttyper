@@ -5,8 +5,9 @@
     height: 50px;
     width: 100%;
     background-color: black;
-    --main-nav-color: white;
-    --second-border-color: var(--main-nav-color);
+    margin-bottom: 60px;
+    --main-nav-color: rgb(238, 253, 237);
+    --second-border-color: rgba(168, 168, 168, 0.514);
  
     .left-menu {
         display: flex;
@@ -22,22 +23,22 @@
                 width: 100%;
                 border: 5px solid var(--main-nav-color);
                 border-radius: 50% 50% 50% 50%;
-
             }
         }
 
         .personal-data {
-            font: bold 40px 'Titillium Web', sans-serif;
-            color: rgb(231, 123, 0);
-            margin-left: 3%;
-            margin-top: 4px;
+            font: bold 34px 'Titillium Web', sans-serif;
+            letter-spacing: 1pt;
+            color: rgb(231, 96, 0);
+            margin-left: 4%;
+            margin-top: 10px;
         }
     }
 
     nav {
         width: 40%;
         max-width: 350px;
-        font: 23px 'Titillium Web', sans-serif;
+        font: 18px 'Titillium Web', sans-serif;
         
         ul {
             display: flex;
@@ -51,7 +52,7 @@
            /*  flex-wrap: wrap; */
 
             a:hover {
-                background-color: rgba(238, 129, 40, 0.521);
+                background-color: rgba(255, 255, 255, 0.139);
                 transition: background-color 0.1s;
                 transition-timing-function: cubic-bezier(.45,.05,.93,.56);
             }
@@ -76,10 +77,11 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                color: var(--main-nav-color);
                 flex: 1;
                 text-decoration: none;
                 transition: background-color 0.3s;
+                color: rgba(255, 255, 255, 0.882);
+                letter-spacing: 0.7pt;
 
                 li {
                     display: flex;
@@ -97,6 +99,4 @@
 
 .active-tab {
     font-weight: bold;
-    color: red;
 }
-
