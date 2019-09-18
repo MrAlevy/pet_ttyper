@@ -1,22 +1,30 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './styles/Navbar.scss'
+import { NAV1, NAV2, NAV3, NAV4 } from '../constants/NavbarNames'
 
 export const Navbar = () => {
-  let pathname = window.location.pathname
-  console.log(pathname)
+
   
   return (
     <div className='navbar'>
         <div className='left-menu'>
-          LOGO
+          <div id='avatar'>
+            <img 
+              alt='avatar'
+              src={require('./images/1.jpg')}
+            />
+          </div>
+          <div className='personal-data'>
+            <span>Alevy</span>
+          </div>
         </div>
         <nav>
             <ul>
-              <NavLink exact to='/' activeClassName='active-tab'><li>main</li></NavLink>
-              <NavLink to='/stats' activeClassName='active-tab'><li>stats</li></NavLink>
-              <NavLink to='/texts' activeClassName='active-tab'><li>texts</li></NavLink>
-              <NavLink to='/texts' activeClassName='active-tab'><li>log in</li></NavLink>
+              <NavLink to={`/${NAV1}`} activeClassName='active-tab'><li>{NAV1}</li></NavLink>
+              <NavLink to={`/${NAV2}`} activeClassName='active-tab'><li>{NAV2}</li></NavLink>
+              <NavLink exact to='/' activeClassName='active-tab'><li>{NAV3}</li></NavLink>
+              <NavLink to={`/${NAV4}`} activeClassName='active-tab'><li>{NAV4}</li></NavLink>
             </ul>
         </nav>
     </div>

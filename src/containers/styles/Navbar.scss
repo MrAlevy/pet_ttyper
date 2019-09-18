@@ -1,23 +1,37 @@
-
-
-
 .navbar {
     display: flex;
     justify-content: space-between;
-    border-bottom: 2px solid var(--main-nav-color);
-    height: 5vh;
-    min-height: 45px;
+    border-radius: 0px 0px 15px 15px;
+    height: 50px;
     width: 100%;
-    background-color: rgb(151, 214, 62);
-    --main-nav-color: rgb(12, 72, 0);
+    background-color: black;
+    --main-nav-color: white;
     --second-border-color: var(--main-nav-color);
-    
-
-
-
+ 
     .left-menu {
         display: flex;
         width: 60%;
+
+        #avatar {
+            width: 74px;
+            height: 74px;
+            margin-top: 13px;
+            margin-left: 7%;
+            img {
+                height: 100%;
+                width: 100%;
+                border: 5px solid var(--main-nav-color);
+                border-radius: 50% 50% 50% 50%;
+
+            }
+        }
+
+        .personal-data {
+            font: bold 40px 'Titillium Web', sans-serif;
+            color: rgb(231, 123, 0);
+            margin-left: 3%;
+            margin-top: 4px;
+        }
     }
 
     nav {
@@ -36,12 +50,10 @@
             padding: 0;
            /*  flex-wrap: wrap; */
 
-
             a:hover {
-                background-color: rgba(80, 100, 110, 0.075);
+                background-color: rgba(238, 129, 40, 0.521);
                 transition: background-color 0.1s;
-                transition-timing-function: cubic-bezier(.45,.05,.93,.56)
-                                 
+                transition-timing-function: cubic-bezier(.45,.05,.93,.56);
             }
             
             a:hover li {
@@ -49,12 +61,16 @@
                 height: 0%;
                 border-left: 1px solid transparent;
             }
+
             a:hover + a li {
                 transition: height .1s, border-left .2s; 
                 height: 0%;
                 border-left: 1px solid transparent;
             }
             
+            :nth-last-child(1) {
+                border-radius: 0px 0px 15px 0px;
+            }
 
             a {
                 display: flex;
@@ -63,9 +79,7 @@
                 color: var(--main-nav-color);
                 flex: 1;
                 text-decoration: none;
-
                 transition: background-color 0.3s;
-
 
                 li {
                     display: flex;
@@ -74,14 +88,15 @@
                     align-items: center;
                     justify-content: space-around;
                     border-left: 1px solid var(--second-border-color);
+                    transition: height .1s, border-left .2s; 
                 }
-
-
             }
         }
     }
 }
+
 .active-tab {
     font-weight: bold;
+    color: red;
 }
 
