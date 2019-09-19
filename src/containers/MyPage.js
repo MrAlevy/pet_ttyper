@@ -1,9 +1,9 @@
 import React from 'react';
 
 
-export const Stats = () => {
+export const MyPage = () => {
   return (
-    <div className="Stats">
+    <div className="MyPage">
         
     </div>
   );

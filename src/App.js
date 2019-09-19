@@ -1,23 +1,26 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Navbar } from './containers/Navbar'
-import { Main } from './containers/Main'
-import { Stats } from './containers/Stats'
 import { Texts } from './containers/Texts'
+import { MyPage } from './containers/MyPage'
+import { Settings } from './containers/Settings'
+import { Auth } from './containers/Auth'
+
 
 import './App.css';
 
 export const App = () => {
   return (
-    <BrowserRouter>
+    <Router>
       <div className="App">
         <Navbar />
         <Switch>
-          <Route exact path='/' component={Main} />
-          <Route exact path='/stats' component={Stats} />
-          <Route exact path='/texts' component={Texts} />
+          <Route path='/texts' exact component={Texts} />
+          <Route path='/' exact component={MyPage} />
+          <Route path='/settings' exact component={Settings} />
+          <Route path='/auth' exact component={Auth} />
         </Switch>
       </div>
-    </BrowserRouter>
+    </Router>
   );
 }
