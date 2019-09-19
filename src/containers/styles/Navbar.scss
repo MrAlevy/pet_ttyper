@@ -8,7 +8,16 @@
     margin-bottom: 60px;
     --main-nav-color: rgb(238, 253, 237);
     --second-border-color: rgba(168, 168, 168, 0.514);
- 
+    
+    #logo {
+        font: normal 28px 'Pacifico', sans-serif, cursive;
+        color: rgb(255, 215, 0);
+        position: initial;
+        text-align: center;
+        margin-top: -3px;
+        margin-left: -22%;
+    }
+
     .left-menu {
         display: flex;
         width: 60%;
@@ -17,7 +26,8 @@
             width: 74px;
             height: 74px;
             margin-top: 13px;
-            margin-left: 7%;
+            margin-left: 1%;
+
             img {
                 height: 100%;
                 width: 100%;
@@ -27,11 +37,20 @@
         }
 
         .personal-data {
-            font: bold 34px 'Titillium Web', sans-serif;
-            letter-spacing: 1pt;
-            color: rgb(231, 96, 0);
             margin-left: 4%;
-            margin-top: 10px;
+            margin-top: 5px;
+            
+            #nickname {
+            font: 600 17px 'Titillium Web', sans-serif;
+            letter-spacing: 1pt;
+            color: rgba(255, 255, 255, 0.882);
+            }
+            #status {
+            font: normal 13px 'Titillium Web', sans-serif;
+            letter-spacing: 0.5pt;
+            color: rgba(255, 255, 255, 0.882);
+            margin-top: -5px;
+            }
         }
     }
 

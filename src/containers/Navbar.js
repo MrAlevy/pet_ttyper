@@ -16,8 +16,12 @@ export const Navbar = () => {
             />
           </div>
           <div className='personal-data'>
-            <span>Alevy</span>
+            <span id='nickname'>Alevy</span> <br/>
+            <div id='status'>{'<status>'}</div>
           </div>
+        </div>
+        <div id='logo'>
+          <span>TTyper</span>
         </div>
         <nav>
             <ul>
