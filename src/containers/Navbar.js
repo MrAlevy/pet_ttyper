@@ -21,7 +21,7 @@ export const Navbar = () => {
           </div>
         </div>
         <div id='logo'>
-          <span>TTyper</span>
+          <span>TTyper !</span>
         </div>
         <nav>
             <ul>
