@@ -1,3 +1,45 @@
-.text-filter {
+.texts-filter {
+    display: flex;
+    height: 50px;
+    margin-top: -30px;
     
+    .filters {
+        display: flex;
+        flex: 1 1 auto;
+        font-size: 17px;
+        margin-left: 100px;
+        justify-content: space-between;
+
+        .filter {
+            display: flex;
+            // flex: 1 1 0;
+            align-items: center;
+            justify-content: center;
+            // border: 1px solid black;
+            cursor: pointer;
+        }
+
+        .filter:hover {
+            color: rgba(97, 97, 97, 0.659);
+        }
+
+        .f1 {
+            flex: 2 1 0;
+        }
+        .f2 {
+            flex: 6 1 0;
+        }
+        .f3 {
+            flex: 9 1 0;
+        }
+
+    }
 }
+
+
+.texts-add-button {
+    display: flex;
+    flex: 14 1 auto;
+    justify-content: flex-end;
+}
+
