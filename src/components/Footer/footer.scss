@@ -1,0 +1,23 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    max-width: 800px;
+    height: 30px;
+    font-size: 13px;
+    color: #424442;
+    letter-spacing: 0.5pt;
+    word-spacing: 2pt;
+    line-height: 12pt;
+    border-radius: 15px 15px 0px 0px;
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.103);
+    position: absolute;
+    bottom: 0;
+
+    span {
+        margin-right: 0%;
+    }
+}

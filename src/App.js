@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Navbar } from './containers/Navbar'
+import { Footer } from './components/Footer/footer.component'
 import { Texts } from './containers/Texts'
 import { MyPage } from './containers/MyPage'
 import { Settings } from './containers/Settings'
@@ -20,6 +21,7 @@ export const App = () => {
           <Route path='/settings' exact component={Settings} />
           <Route path='/auth' exact component={Auth} />
         </Switch>
+        <Footer />
       </div>
     </Router>
   );
