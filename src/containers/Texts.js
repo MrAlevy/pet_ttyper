@@ -1,5 +1,9 @@
 import React from 'react';
+import { TextsSelector } from '../components/TextsCont/texts-selector.component';
+import { TextsFilters } from '../components/TextsCont/texts-filters.component';
+import { TextsList } from '../components/TextsCont/texts-list.component';
 import './styles/texts.scss';
+import './styles/main.scss';
 
 const handleClick = () => {
   fetch('http://localhost:5000/texts/add', {
@@ -19,23 +23,10 @@ const handleClick = () => {
 
 export const Texts = () => {
   return (
-    <div className="texts">
-{/*         <div className="textsMain">
-          
-        </div>
-        <div className="textsList">
-          <button onClick={() => handleClick()}>add text</button>
-          
-        </div> */}
-      <div className='firstRow'>
-        
-      </div>
-      <div className='secondRow'>
-
-      </div>
-      <div className='thirdRow'>
-
-      </div>
+    <div className="dataCont textsCont">
+      <TextsFilters />
+      <TextsSelector />
+      <TextsList />
     </div>
   );
 }
