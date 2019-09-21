@@ -1,8 +1,10 @@
 .texts-filter {
     display: flex;
     height: 50px;
-    margin-top: -30px;
-    
+    margin-top: -50px;
+    background-color: rgba(0, 0, 0, 0.103);
+    border-radius: 15px;
+
     .filters {
         display: flex;
         flex: 1 1 auto;
@@ -17,21 +19,22 @@
             justify-content: center;
             // border: 1px solid black;
             cursor: pointer;
+            color: black;
+            
         }
 
         .filter:hover {
-            color: rgba(97, 97, 97, 0.659);
+            color: rgba(53, 53, 53, 0.673);
+        }
+        .sep {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            color: rgb(99, 99, 99);
+            user-select: none;
         }
 
-        .f1 {
-            flex: 2 1 0;
-        }
-        .f2 {
-            flex: 6 1 0;
-        }
-        .f3 {
-            flex: 9 1 0;
-        }
 
     }
 }
@@ -39,7 +42,55 @@
 
 .texts-add-button {
     display: flex;
-    flex: 14 1 auto;
+    flex: 10 1 auto;
     justify-content: flex-end;
+    align-items: center;
+    margin-right: 8px;
+
+    .addBtn {
+        -moz-box-shadow:inset 0px 1px 0px 0px #caefab;
+        -webkit-box-shadow:inset 0px 1px 0px 0px #caefab;
+        box-shadow:inset 0px 1px 0px 0px #caefab;
+        background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6ebd28), color-stop(1, #4c9410));
+        background:-moz-linear-gradient(top, #6ebd28 5%, #4c9410 100%);
+        background:-webkit-linear-gradient(top, #6ebd28 5%, #4c9410 100%);
+        background:-o-linear-gradient(top, #6ebd28 5%, #4c9410 100%);
+        background:-ms-linear-gradient(top, #6ebd28 5%, #4c9410 100%);
+        background:linear-gradient(to bottom, #6ebd28 5%, #4c9410 100%);
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6ebd28', endColorstr='#4c9410',GradientType=0);
+        background-color:#6ebd28;
+        -moz-border-radius:15px;
+        -webkit-border-radius:15px;
+        border-radius:15px;
+        border:1px solid #298718;
+        cursor:pointer;
+        color:rgb(244, 251, 243);
+        font-family: 'Titillium Web', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+        sans-serif;
+        font-size:16px;
+        font-weight:bold;
+        width: 17%;
+        height: 34px;
+        min-width: 80px;
+        text-decoration:none;
+        text-shadow:0px 1px 0px #547437;
+        outline: none;
+    }
+    .addBtn:hover {
+        background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #4c9410), color-stop(1, #6ebd28));
+        background:-moz-linear-gradient(top, #4c9410 5%, #6ebd28 100%);
+        background:-webkit-linear-gradient(top, #4c9410 5%, #6ebd28 100%);
+        background:-o-linear-gradient(top, #4c9410 5%, #6ebd28 100%);
+        background:-ms-linear-gradient(top, #4c9410 5%, #6ebd28 100%);
+        background:linear-gradient(to bottom, #4c9410 5%, #6ebd28 100%);
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#4c9410', endColorstr='#6ebd28',GradientType=0);
+        background-color:#4c9410;
+        color:rgb(15, 72, 5);
+    }
+    .addBtn:active {
+        position:relative;
+        top:1px;
+    }
 }
 
