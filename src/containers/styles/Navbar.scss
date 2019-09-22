@@ -6,8 +6,9 @@
     width: 100%;
     background-color: black;
     margin-bottom: 60px;
-    --main-nav-color: rgb(238, 253, 237);
+    --main-nav-color: rgba(168, 168, 168, 0.514);
     --second-border-color: rgba(168, 168, 168, 0.514);
+    box-shadow: 0 0 8px black;
     
     #logo {
         font: normal 28px 'Pacifico', sans-serif;
@@ -26,14 +27,16 @@
             width: 74px;
             height: 74px;
             margin-top: 13px;
-            margin-left: 1%;
+            margin-left: 2%;
             z-index: 999;
 
             img {
                 height: 100%;
                 width: 100%;
-                border: 5px solid var(--main-nav-color);
+                border: 3px solid var(--main-nav-color);
                 border-radius: 50% 50% 50% 50%;
+                box-shadow: 0 0 8px black;
+
             }
         }
 
