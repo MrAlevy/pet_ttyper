@@ -1,11 +1,11 @@
 import React from 'react';
 import { TextsSelector } from '../components/TextsCont/texts-selector.component';
 import { TextsFilters } from '../components/TextsCont/texts-filters.component';
-import { TextsList } from '../components/TextsCont/texts-list.component';
+import { TextsList } from './TextsList';
 import './styles/texts.scss';
 import './styles/main.scss';
 
-const handleClick = () => {
+/* const handleClick = () => {
   fetch('http://localhost:5000/texts/add', {
     method: 'POST',
     body: JSON.stringify({
@@ -19,7 +19,7 @@ const handleClick = () => {
   })
   .then(res => res.json())
   .catch(err => console.error(err))
-}
+} */
 
 export const Texts = () => {
   return (

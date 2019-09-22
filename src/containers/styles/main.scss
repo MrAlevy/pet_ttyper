@@ -3,5 +3,67 @@
     flex-direction: column;
     width: 96%;
     height: 100%;
-    // border: 2px solid black;
+}
+
+.main-menu {
+    display: flex;
+    height: 50px;
+    margin-top: -50px;
+    background-color: rgba(31, 156, 173, 0.18);
+    border-radius: 5px;
+
+    .main-menu-items {
+        display: flex;
+        flex: 1 1 auto;
+        font-size: 17px;
+        margin-left: 100px;
+        justify-content: space-between;
+
+        .main-menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: black;
+        }
+
+        .main-menu-item:hover {
+            color: rgba(53, 53, 53, 0.771);
+        }
+        .separator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            color: rgb(99, 99, 99);
+            user-select: none;
+        }
+    }
+}
+
+.second-menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 40px;
+    width: 50%;
+    background-color: rgba(161, 170, 171, 0.125);
+    border-radius: 5px;
+    margin-top: 10px;
+
+    .second-menu-item {
+        height: 30px;
+    }
+
+}
+
+.main-cont {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    background-color: rgba(12, 14, 14, 0.389);
+    border-radius: 5px;
+    margin-top: 10px;
+
 }

@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   justify-content: center;
-  background-color: rgb(244, 251, 243);
+  background-color: rgb(254, 255, 253);
 }
 
 #root {

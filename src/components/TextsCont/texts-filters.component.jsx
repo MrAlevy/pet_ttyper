@@ -6,31 +6,31 @@ const handleClick = (e) => {
 
 export const TextsFilters = (props) => { 
     return (    
-        <div className='texts-filter'>
-            <div className='filters'>
+        <div className='main-menu texts-filter'>
+            <div className='main-menu-items'>
                 <div                            
                     name='my' 
-                    className='filter f1'
+                    className='main-menu-item'
                     onClick={(e) => handleClick(e)} 
                 >
                     My
                 </div>
-                <div className='sep'>
+                <div className='separator'>
                     |
                 </div>
                 <div
                     name='global' 
-                    className='filter f2' 
+                    className='main-menu-item' 
                     onClick={(e) => handleClick(e)}
                 >
                     Global
                 </div>
-                <div className='sep'>
+                <div className='separator'>
                     |
                 </div>
                 <div
                     name='favorites' 
-                    className='filter f3' 
+                    className='main-menu-item' 
                     onClick={(e) => handleClick(e)}
                 >
                     Favorites
