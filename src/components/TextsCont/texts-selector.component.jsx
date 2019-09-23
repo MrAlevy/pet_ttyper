@@ -13,21 +13,23 @@ export const TextsSelector = () => {
                 onChange={(e) => handleChange(e)}     
                 value='search...'
             />
+            <label for='sortBy'>sort by: </label>
             <select                            
                 name='sortBy' 
                 className='second-menu-item sort-by'
                 onChange={(e) => handleChange(e)} 
             >
-                <option value=''>sort by ...</option>
+                <option value=''>-</option>
                 <option value='rate'>rate</option>
                 <option value='date'>date</option>
             </select>
+            <label for='language'>alphabet: </label>
             <select                            
                 name='language' 
                 className='second-menu-item language'
                 onChange={(e) => handleChange(e)} 
             >
-                <option value=''>language</option>
+                <option value=''>-</option>
                 <option value='latin'>latin</option>
                 <option value='cyrillic'>cyrillic</option>
             </select>
