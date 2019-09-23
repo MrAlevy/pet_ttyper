@@ -5,7 +5,7 @@ import { TextsList } from './TextsList';
 import './styles/texts.scss';
 import './styles/main.scss';
 
-const handleClick = () => {
+/* const handleClick = () => {
   fetch('http://localhost:5000/texts/add', {
     method: 'POST',
     body: JSON.stringify({
@@ -19,7 +19,7 @@ const handleClick = () => {
   })
   .then(res => res.json())
   .catch(err => console.error(err))
-}
+} */
 
 export const Texts = () => {
   return (

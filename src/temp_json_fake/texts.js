@@ -1,5 +1,6 @@
 export const texts = [
     {
+        _id: 1,
         caption: 'Test header text number 1 (peace of text)',
         body: "let's go to type something interesting may be for fun",
         tags: 'text, test, numbers',
@@ -12,6 +13,7 @@ export const texts = [
         uploadDate: '05.07.2019'
     },
     {
+        _id: 2,
         caption: 'Здесь будет отрывок из пьесы может быть',
         body: "let's go to type something interesting may be for fun",
         tags: 'text, test, numbers',
@@ -24,6 +26,7 @@ export const texts = [
         uploadDate: '05.07.2019'
     },
     {
+        _id: 3,
         caption: 'test text number 3',
         body: "let's go to type something interesting may be for fun",
         tags: 'text, test, numbers',
@@ -36,6 +39,7 @@ export const texts = [
         uploadDate: '05.07.2019'
     },
     {
+        _id: 4,
         caption: 'test text number 4',
         body: "let's go to type something interesting may be for fun",
         tags: 'text, test, numbers',
@@ -48,6 +52,7 @@ export const texts = [
         uploadDate: '05.07.2019'
     },
     {
+        _id: 5,
         caption: 'test text number 5',
         body: "let's go to type something interesting may be for fun",
         tags: 'text, test, numbers',
@@ -60,6 +65,7 @@ export const texts = [
         uploadDate: '05.07.2019'
     },
     {
+        _id: 6,
         caption: 'test text number 6',
         body: "let's go to type something interesting may be for fun",
         tags: 'text, test, numbers',
@@ -72,6 +78,7 @@ export const texts = [
         uploadDate: '05.07.2019'
     },
     {
+        _id: 7,
         caption: 'test text number 7',
         body: "let's go to type something interesting may be for fun",
         tags: 'text, test, numbers',
@@ -84,6 +91,7 @@ export const texts = [
         uploadDate: '05.07.2019'
     },
     {
+        _id: 8,
         caption: 'test text number 8',
         body: "flex-basis This defines the default size of an element before the remaining space is distributed. It can be a length (e.g. 20%, 5rem, etc.) or a keyword. The auto keyword means look at my width or height property (which was temporarily done by the main-size keyword until deprecated). The content keyword means  - this keyword isn't well supported yet, so it's hard to test and harder to know what its brethren max-content, min-content, and fit-content do.",
         tags: 'text, test, numbers',
@@ -96,6 +104,7 @@ export const texts = [
         uploadDate: '05.07.2019'
     },
     {
+        _id: 9,
         caption: 'test text number 9',
         body: "This is the shorthand for flex-grow, flex-shrink and flex-basis combined. The second and third parameters (flex-shrink and flex-basis) are optional. Default is 0 1 auto.",
         tags: 'text, test, numbers',
@@ -108,6 +117,7 @@ export const texts = [
         uploadDate: '05.07.2019'
     },
     {
+        _id: 10,
         caption: 'test text number 10',
         body: "This is the shorthand for flex-grow, flex-shrink and flex-basis combined. The second and third parameters (flex-shrink and flex-basis) are optional. Default is 0 1 auto.",
         tags: 'text, test, numbers',

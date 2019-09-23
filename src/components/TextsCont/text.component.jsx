@@ -1,49 +1,65 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import { Redirect } from 'react-router';
 
 export const Text = (props) => {
+    // isTypingStart - start to type, if false - render texts list
+    const [isTypingStart, setIsTypingStart] = useState(false);
+
     const { 
-        caption, body, tags, language,
+        _id, caption, body, tags, language,
         rate, owner, yourSpeed, bestSpeed,
         bestSpeedOwner, uploadDate 
     } = props.text;
 
-    return (    
-        <div id='text-cont'>
-            <div id='main-info'>
-                <div id='header'>
-                    <div id='caption'>{caption}</div>
-                    <div id='tool'>
-                        <div>D</div>
-                        <div>M</div>
-                        <div>
-                            {rate} 
+    return (   
+        isTypingStart
+            ? 
+                <Redirect 
+                    to={{
+                        pathname: `/texts/type/${_id}`,
+                        state: props.text
+                    }} 
+                />
+            : 
+                <div 
+                    id='text-cont'
+                    onClick = {() => setIsTypingStart(true)}
+                >
+                    <div id='main-info'>
+                        <div id='header'>
+                            <div id='caption'>{caption}</div>
+                            <div id='tool'>
+                                <div>D</div>
+                                <div>M</div>
+                                <div>
+                                    {rate} 
+                                </div>
+                            </div>
+                        </div>
+                        <div id='body'>
+                            {body}
+                        </div>
+                        <div id='footer'>
+                            <div id='alph'><span>alphabet: </span>{language}</div>
+                            <div id='tags'><span>tags: </span>{tags}</div>
+                        </div>
+                    </div>
+                    <div id='second-info'>
+                        <div id='names'>
+                            <span>owner: </span>
+                            <span>upload: </span>
+                            <span>your speed: </span>
+                            <span>best speed: </span>
+                        </div>
+                        <div id='data'>
+                            <span>{owner}</span>
+                            <span>{uploadDate}</span> 
+                            <span>{yourSpeed}</span> 
+                            <span>{bestSpeed} &nbsp;&nbsp; <span id='by'>by</span></span>
+                            <span id='bs'>{bestSpeedOwner}</span>
                         </div>
                     </div>
                 </div>
-                <div id='body'>
-                    {body}
-                </div>
-                <div id='footer'>
-                    <div id='alph'><span>alphabet: </span>{language}</div>
-                    <div id='tags'><span>tags: </span>{tags}</div>
-                </div>
-            </div>
-            <div id='second-info'>
-                <div id='names'>
-                    <label>owner: </label>
-                    <label>upload: </label>
-                    <label>your speed: </label>
-                    <label>best speed: </label>
-                </div>
-                <div id='data'>
-                    <label>{owner}</label>
-                    <label>{uploadDate}</label> 
-                    <label>{yourSpeed}</label> 
-                    <label>{bestSpeed} &nbsp;&nbsp; <span id='by'>by</span></label>
-                    <span id='bs'>{bestSpeedOwner}</span>
-                </div>
-            </div>
-        </div>
+        
     );
 } 

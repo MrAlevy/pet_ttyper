@@ -5,7 +5,7 @@ import {texts} from '../temp_json_fake/texts'
 
 export const TextsList = () => {
     const textsList = texts.map(text => (
-            <Text text={text} />
+            <Text key={text._id} text={text} />
     ))
 
     return (
