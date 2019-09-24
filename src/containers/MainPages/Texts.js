@@ -1,9 +1,9 @@
 import React from 'react';
-import { TextsSelector } from '../components/TextsCont/texts-selector.component';
-import { TextsFilters } from '../components/TextsCont/texts-filters.component';
-import { TextsList } from './TextsList';
-import './styles/texts.scss';
-import './styles/main.scss';
+import { TextsSelector } from '../../components/TextsPage/texts-selector.component';
+import { TextsFilterPanel } from '../TextsFilterPanel/TextsFilterPanel';
+import { TextsList } from '../TextsList/TextsList';
+import '../styles/texts.scss';
+import '../styles/main.scss';
 
 /* const handleClick = () => {
   fetch('http://localhost:5000/texts/add', {
@@ -23,8 +23,8 @@ import './styles/main.scss';
 
 export const Texts = () => {
   return (
-    <div className="dataCont textsCont">
-      <TextsFilters />
+    <div className='dataCont textsCont'>
+      <TextsFilterPanel />
       <TextsSelector />
       <TextsList />
     </div>

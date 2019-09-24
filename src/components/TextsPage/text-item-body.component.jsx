@@ -1,0 +1,34 @@
+import React from 'react';
+import { TextItemBodySecondInfo } from './text-item-body-second-info.component'
+
+export const TextItemBody = (props) => {
+    const { caption, body, tags, language,rate } = props.text;
+
+    return (
+        <div 
+            id='text-cont'
+            onClick = {() => props.onClick()}
+        >
+            <div id='main-info'>
+                <div id='header'>
+                    <div id='caption'>{caption}</div>
+                    <div id='tool'>
+                        <div>D</div>
+                        <div>M</div>
+                        <div>
+                            {rate} 
+                        </div>
+                    </div>
+                </div>
+                <div id='body'>
+                    {body}
+                </div>
+                <div id='footer'>
+                    <div id='alph'><span>alphabet: </span>{language}</div>
+                    <div id='tags'><span>tags: </span>{tags}</div>
+                </div>
+            </div>
+            <TextItemBodySecondInfo text={props.text}/>
+        </div>
+    )
+}

@@ -1,0 +1,76 @@
+.Modal {
+    display: flex;
+    flex-direction: column;
+    position:absolute;
+    height: 400px;
+    width: 500px;
+    left: 50%;
+    top: 50%;
+    margin-left: -250px;
+    margin-top: -250px;
+    background: rgb(93,93,93);
+    background: linear-gradient(0deg, rgba(170,170,170,1) 0%, rgba(200,200,200,1) 76%, rgba(83,194,208,1) 100%);
+    border-radius: 5px;
+    z-index: 20;
+    outline: none;
+
+    .addTextField {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        margin-left: 20px;
+        margin-top: 10px;
+
+        input, textarea {
+            margin-left: 10px;
+            margin-bottom: 10px;
+            width: 435px;
+            height: 20px;
+            background-color: white;
+        }
+
+        textarea {
+            height: 160px;
+            width: 434px;
+            resize: none;
+        }
+
+        select {
+            margin-left: 10px;
+            height: 25px;
+        }
+
+        #addTags {
+            margin-top: -5px;
+        }
+    }
+
+    .addBtnModal {
+        margin-left: 383px;
+        margin-top: -35px;
+        font-family: 'Titillium Web', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+        sans-serif;
+        font-size:16px;
+        width: 17%;
+        height: 34px;
+        min-width: 80px;
+        text-decoration:none;
+        text-shadow:0px 1px 0px #547437;
+        outline: none;
+    }
+
+    .addBtnModal:hover {
+        color: #3b3b3b1f;
+    }
+}
+
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.801);
+    z-index: 20;
+  }
