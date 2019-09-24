@@ -13,7 +13,7 @@ export const TextsSelector = () => {
                 onChange={(e) => handleChange(e)}     
                 value='search...'
             />
-            <label for='sortBy'>sort by: </label>
+            <label htmlFor='sortBy'>sort by: </label>
             <select                            
                 name='sortBy' 
                 className='second-menu-item sort-by'
@@ -23,7 +23,7 @@ export const TextsSelector = () => {
                 <option value='rate'>rate</option>
                 <option value='date'>date</option>
             </select>
-            <label for='language'>alphabet: </label>
+            <label htmlFor='language'>alphabet: </label>
             <select                            
                 name='language' 
                 className='second-menu-item language'

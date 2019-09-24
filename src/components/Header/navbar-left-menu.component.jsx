@@ -6,11 +6,11 @@ export const NavbarLeftMenu = () => {
             <div id='avatar'>
                 <img 
                     alt='avatar'
-                    src={require('../../containers/images/1.jpg')}
+                    src={require('../../containers/images/guest_avatar.png')}
                 />
             </div>
             <div className='personal-data'>
-                <span id='nickname'>Alevy</span>
+                <span id='nickname'>Guest</span>
                 <br/>
                 <div id='status'>{'<status>'}</div>
             </div>

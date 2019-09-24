@@ -4,6 +4,10 @@ const handleClick = (e) => {
     console.log(e.target)
 }
 
+const addTextButtonClick = () => {
+    console.log(1010)
+}
+
 export const TextsFilters = (props) => { 
     return (    
         <div className='main-menu texts-filter'>
@@ -37,7 +41,7 @@ export const TextsFilters = (props) => {
                 </div>
             </div>
             <div className='texts-add-button'>
-                <button className='addBtn' onClick={() => props.addTextButtonClick()}>upload</button>
+                <button className='addBtn' onClick={() => addTextButtonClick()}>upload</button>
             </div>
         </div>
     );
