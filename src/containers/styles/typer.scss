@@ -1,19 +1,97 @@
+.typer-cont {
+    --border-bottom: 1px solid rgb(221, 219, 83); 
+
+    .text-t {
+        display: flex;
+        align-items: center;
+        font: 23px 'Ubuntu Mono', monospace, Arial, Helvetica, sans-serif;
+        width: 48.5%;
+        height: 40px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: clip;
+    }
+}
+
+#text-typer-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 10%;
+}
+
+
 #right-text-line {
     display: flex;
-    background-color: antiquewhite;
-    div {
-        width: 30%;
-        height: 50px;
-        border: 1px solid black;
-    }
+    align-items: center;
+    width: 90%;
+    margin-bottom: 10px;
 }
 
 #input-text-line {
     display: flex;
-    background-color: antiquewhite;
-    div {
-        width: 30%;
-        height: 50px;
-        border: 1px solid black;
+    width: 90%;
+
+    input {
+        height: 100%;
+        width: 100%;
+        font: 23px 'Ubuntu Mono', monospace, Arial, Helvetica, sans-serif;
+        color: red;
     }
+}
+
+
+
+.right-text-past {
+    justify-content: flex-end;
+    white-space: pre !important;
+    color: rgba(0, 0, 0, 0.329);
+    background-color: rgba(0, 0, 0, 0.438);
+    position: relative;
+   // border-bottom: var(--border-bottom);
+   // border-right: var(--border-bottom);
+
+}
+
+.right-text-past:before {
+    content: '';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    -webkit-box-shadow: inset 20px 0px 15px 0px rgba(182,176,189,1);
+    -moz-box-shadow: inset 20px 0px 15px 0px rgba(182,176,189,1);
+    box-shadow: inset 20px 0px 15px 0px rgba(182,176,189,1);    
+    pointer-events: none;
+}
+
+.right-letter {
+    justify-content: center;
+    width: 14px !important;
+    //height: 35px !important;
+    background-color: rgba(0, 0, 0, 0.212);
+   // border: 1px solid rgba(65, 65, 65, 0.479);
+}
+
+.right-text {
+    white-space: pre !important;
+    background-color: rgba(0, 0, 0, 0.212);
+    //border-bottom: var(--border-bottom);
+   // border-left: var(--border-bottom);
+}
+
+.input-text-past {
+    justify-content: flex-end;
+    white-space: pre !important;
+}
+
+.input-letter {
+    width: 80px !important;
+}
+
+#second-info {
+   
 }
