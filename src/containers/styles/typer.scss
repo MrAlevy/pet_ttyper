@@ -1,6 +1,4 @@
 .typer-cont {
-    --border-bottom: 1px solid rgb(221, 219, 83); 
-
     .text-t {
         display: flex;
         align-items: center;
@@ -22,7 +20,6 @@
     margin-top: 10%;
 }
 
-
 #right-text-line {
     display: flex;
     align-items: center;
@@ -38,11 +35,11 @@
         height: 100%;
         width: 100%;
         font: 23px 'Ubuntu Mono', monospace, Arial, Helvetica, sans-serif;
-        color: red;
+        color: #be3030;
+        background-color: #e4dcec;
+        border-radius: 5px;
     }
 }
-
-
 
 .right-text-past {
     justify-content: flex-end;
@@ -50,9 +47,6 @@
     color: rgba(0, 0, 0, 0.329);
     background-color: rgba(0, 0, 0, 0.438);
     position: relative;
-   // border-bottom: var(--border-bottom);
-   // border-right: var(--border-bottom);
-
 }
 
 .right-text-past:before {
@@ -70,22 +64,40 @@
 
 .right-letter {
     justify-content: center;
-    width: 14px !important;
-    //height: 35px !important;
-    background-color: rgba(0, 0, 0, 0.212);
-   // border: 1px solid rgba(65, 65, 65, 0.479);
+    width: 12px !important;
+    height: 42px !important;
+    background-color: rgb(156, 150, 162);
+    border: 1px solid transparent;
+    border-radius: 3px;
+}
+
+.right-letter-error {
+    background-color: #a35c5c;
 }
 
 .right-text {
     white-space: pre !important;
-    background-color: rgba(0, 0, 0, 0.212);
-    //border-bottom: var(--border-bottom);
-   // border-left: var(--border-bottom);
+    background-color: rgba(0, 0, 0, 0.166);
+    position: relative;
+}
+
+.right-text:after {
+    content: '';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    -webkit-box-shadow: inset -20px 0px 15px 0px rgba(182,176,189,1);
+    -moz-box-shadow: inset -20px 0px 15px 0px rgba(182,176,189,1);
+    box-shadow: inset -20px 0px 15px 0px rgba(182,176,189,1);   
+    pointer-events: none;
 }
 
 .input-text-past {
     justify-content: flex-end;
     white-space: pre !important;
+    color: #0c4a16;
 }
 
 .input-letter {

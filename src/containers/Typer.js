@@ -11,7 +11,8 @@ export default class Typer extends React.Component {
       rightLetter: '',
       rightTextPast: '',
       inputLetter: '',
-      inputTextPast: ''
+      inputTextPast: '',
+      isErrorLetter: false,
     } 
   }
      
@@ -44,12 +45,21 @@ export default class Typer extends React.Component {
         rightTextPast: this.state.rightTextPast + inputValue,
         inputTextPast: this.state.inputTextPast + inputValue,
         inputLetter: '',
+        isErrorLetter: false,
       }, () => {
           if (this.state.rightTextPast.length >= 40) {
-            // if already input string is bigger than 38sym - cut it
+            // if already right string is bigger than 40 symbols - cut it
             this.setState({
               rightTextPast: this.state.rightTextPast.slice(1, ),
-              inputTextPast: this.state.inputTextPast.slice(1, ),
+            })
+          }
+          if (
+            // if already input string is bigger than 3 word - cut it
+            this.state.rightTextPast.endsWith(' ')
+            && this.state.inputTextPast.split(' ').length > 2
+          ) {
+            this.setState({
+              inputTextPast: this.state.inputTextPast.split(' ').slice(1, ).join(' ')
             })
           }
         }
@@ -59,9 +69,14 @@ export default class Typer extends React.Component {
       // if input letter is wrong - write the wrong letter to input
       this.setState({
         inputLetter: inputValue,
+        isErrorLetter: true,
       })
     }
   }
+  /*
+  / end of main typing process algorithm
+  */
+
 
   render() {
     return (
@@ -71,7 +86,7 @@ export default class Typer extends React.Component {
 
           <div id='right-text-line'>
             <div className='text-t right-text-past'>{this.state.rightTextPast}</div>
-            <div className='text-t right-letter'>{this.state.rightLetter}</div>
+            <div className={this.state.isErrorLetter ? 'text-t right-letter right-letter-error' : 'text-t right-letter'}>{this.state.rightLetter}</div>
             <div className='text-t right-text'>{this.state.rightText.slice(0, 35)}</div>
           </div>
   
@@ -79,7 +94,7 @@ export default class Typer extends React.Component {
             <div className='text-t input-text-past'>{this.state.inputTextPast}</div>
             <div className='text-t input-letter'>
               <input
-                type="text"
+                type='text'
                 value={this.state.inputLetter}
                 onChange={(e) => this.handleInput(e)}
               />
