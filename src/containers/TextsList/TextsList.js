@@ -1,16 +1,44 @@
 import React from 'react';
-import {Text} from './TextItem.js';
+import { connect } from 'react-redux'
+import { getTextsFetch } from '../../actions';
+import { Text } from './TextItem.js';
 
-import {texts} from '../../temp_json_fake/texts'
+const mapDispatchToProps = dispatch => ({
+    getTextsFetch: () => dispatch(getTextsFetch())
+})
 
-export const TextsList = () => {
-    const textsList = texts.map(text => (
-            <Text key={text._id} text={text} />
-    ))
+const mapStateToProps = (state) => ({
+    texts: state.texts,
+    textsIsLoading: state.textsIsLoading,
+    textsError: state.textsError
+})
 
-    return (
-        <div className='main-cont texts-list'>
-            {textsList}
-        </div>
-    )
+class TextsList extends React.Component {
+  
+    componentDidMount() {
+        this.props.getTextsFetch()
+    }
+    
+    render() {
+        let textsList = []
+
+        if (this.props.texts.length) {
+            const texts = this.props.texts
+            textsList = texts.map(text => 
+                <Text key={text._id} text={text} />
+            )
+        }
+
+        return (
+            <div className='main-cont texts-list'>
+                {this.props.textsIsLoading
+                    ? <span>load...</span>
+                    : this.props.textsError
+                        ? <span>error!</span>
+                        : textsList}
+            </div>
+        )
+    }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(TextsList)

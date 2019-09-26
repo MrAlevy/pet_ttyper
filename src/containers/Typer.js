@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextItemBodySecondInfo } from '../components/TextsPage/text-item-body-second-info.component'
+//import { TextItemBodySecondInfo } from '../components/TextsPage/text-item-body-second-info.component'
 import './styles/texts.scss';
 import './styles/typer.scss';
 export default class Typer extends React.Component {
@@ -95,7 +95,7 @@ export default class Typer extends React.Component {
           <div id='right-text-line'>
             <div className='text-t right-text-past'>{this.state.rightTextPast}</div>
             <div className={this.state.isErrorLetter ? 'text-t right-letter right-letter-error' : 'text-t right-letter'}>{this.state.rightLetter}</div>
-            <div className='text-t right-text'>{this.state.rightText.slice(0, 35)}</div>
+            <div className='text-t right-text'>{this.state.rightText && this.state.rightText.slice(0, 35)}</div>
           </div>
           
         </div>

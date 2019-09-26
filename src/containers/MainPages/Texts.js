@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextsSelector } from '../../components/TextsPage/texts-selector.component';
 import { TextsFilterPanel } from '../TextsFilterPanel/TextsFilterPanel';
-import { TextsList } from '../TextsList/TextsList';
+import TextsList from '../TextsList/TextsList';
 import '../styles/texts.scss';
 import '../styles/main.scss';
 
