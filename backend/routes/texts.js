@@ -7,6 +7,12 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/type/:id').get((req, res) => {
+  Text.findById(req.params.id)
+    .then(text => res.json(text))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.route('/add').post((req, res) => {
 
   const newText = new Text(

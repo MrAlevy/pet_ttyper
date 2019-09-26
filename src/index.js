@@ -4,7 +4,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
-import { watchGetTexts } from './sagas/watchGetTexts';
+import rootSaga from './sagas/rootSaga';
 import { App } from './App';
 import './index.css'
 
@@ -18,7 +18,7 @@ const store = createStore(
     )
 )
 
-sagaMiddleware.run(watchGetTexts)
+sagaMiddleware.run(rootSaga)
 
 ReactDOM.render(
     <Provider store={store}>

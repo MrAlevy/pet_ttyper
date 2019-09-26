@@ -1,8 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { getTextItemFetch } from '../actions';
 //import { TextItemBodySecondInfo } from '../components/TextsPage/text-item-body-second-info.component'
 import './styles/texts.scss';
 import './styles/typer.scss';
-export default class Typer extends React.Component {
+
+const mapDispatchToProps = dispatch => ({
+  getTextItemFetch: (id) => dispatch(getTextItemFetch(id))
+})
+
+const mapStateToProps = (state) => ({
+  textItem: state.textItem,
+  textItemIsLoading: state.textItemIsLoading,
+  textItemError: state.textItemError
+})
+
+class Typer extends React.Component {
   constructor (props) {
     super (props)
     
@@ -17,6 +30,8 @@ export default class Typer extends React.Component {
   }
      
   componentDidMount () {
+    this.props.getTextItemFetch('5d84b9fa5681392370f37c23')
+    console.log('props: ',this.props)
     document.addEventListener('keydown', this.handleKeyPress)
   }
 
@@ -108,3 +123,5 @@ export default class Typer extends React.Component {
     )
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Typer)
