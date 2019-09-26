@@ -10,22 +10,46 @@ export default class Typer extends React.Component {
       rightText: this.props.location.state.body,
       rightLetter: '',
       rightTextPast: '',
-      inputLetter: '',
-      inputTextPast: '',
       isErrorLetter: false,
+
+      isTypingStart: false,
     } 
   }
      
+  componentDidMount () {
+    document.addEventListener('keydown', this.handleKeyPress)
+  }
+
+  componentWillUnmount () {
+    document.removeEventListener('keydown', this.handleKeyPress)
+  }
+
   /*
-  / main typing process algorithm
+  * main typing algorithm
   */
-  handleInput(e) {
-    const inputValue = e.target.value;
+  handleKeyPress = (e) => {
+    // if push the space - start typing
+    e.keyCode === 32 && this.setState({isTypingStart: true})
+
+    // checking that input value not Shift, Ctrl etc...
+    let isValidKey = false;
+    if (
+      (e.keyCode >= 48 && e.keyCode <= 90)
+      || (e.keyCode >= 96 && e.keyCode <= 111)
+      || (e.keyCode >= 160 && e.keyCode <= 165)
+      || (e.keyCode >= 186 && e.keyCode <= 223)
+      || e.keyCode === 170
+      || e.keyCode === 32
+      || e.keyCode === 9
+      || e.keyCode === 13
+    ) { isValidKey = true }
+    if (!isValidKey) {return}
+     
+    const inputValue = e.key;
 
     if (
       this.state.rightTextPast === '' 
-      && inputValue === ' ' 
-      && this.state.rightLetter === ''
+      && this.state.isTypingStart
     ) {
       // starting space - start the typing - take the first word
       this.setState({
@@ -43,8 +67,6 @@ export default class Typer extends React.Component {
         rightLetter: this.state.rightText[0],
         rightText: this.state.rightText.slice(1,),
         rightTextPast: this.state.rightTextPast + inputValue,
-        inputTextPast: this.state.inputTextPast + inputValue,
-        inputLetter: '',
         isErrorLetter: false,
       }, () => {
           if (this.state.rightTextPast.length >= 40) {
@@ -53,30 +75,16 @@ export default class Typer extends React.Component {
               rightTextPast: this.state.rightTextPast.slice(1, ),
             })
           }
-          if (
-            // if already input string is bigger than 3 word - cut it
-            this.state.rightTextPast.endsWith(' ')
-            && this.state.inputTextPast.split(' ').length > 2
-          ) {
-            this.setState({
-              inputTextPast: this.state.inputTextPast.split(' ').slice(1, ).join(' ')
-            })
-          }
         }
       )
     }
     else if (this.state.rightTextPast !== '') {
       // if input letter is wrong - write the wrong letter to input
       this.setState({
-        inputLetter: inputValue,
         isErrorLetter: true,
       })
     }
   }
-  /*
-  / end of main typing process algorithm
-  */
-
 
   render() {
     return (
@@ -88,17 +96,6 @@ export default class Typer extends React.Component {
             <div className='text-t right-text-past'>{this.state.rightTextPast}</div>
             <div className={this.state.isErrorLetter ? 'text-t right-letter right-letter-error' : 'text-t right-letter'}>{this.state.rightLetter}</div>
             <div className='text-t right-text'>{this.state.rightText.slice(0, 35)}</div>
-          </div>
-  
-          <div id='input-text-line'>
-            <div className='text-t input-text-past'>{this.state.inputTextPast}</div>
-            <div className='text-t input-letter'>
-              <input
-                type='text'
-                value={this.state.inputLetter}
-                onChange={(e) => this.handleInput(e)}
-              />
-            </div> 
           </div>
           
         </div>
