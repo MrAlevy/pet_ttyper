@@ -30,12 +30,6 @@ const textSchema = new Schema({
     owner: {
         type: String,
     },
-    yourSpeed: {
-        type: Number,
-    },
-    yourMistakes: {
-        type: Number,
-    },
     bestSpeed: {
         type: Number,
     },
@@ -43,8 +37,13 @@ const textSchema = new Schema({
         type: String,
     },
     bestSpeedOwnerMistakes: {
-        type: Number,
+        type: String,
     },
+    uploadDate: {
+        type: String,
+    },
+    yourSpeed: {type: Number},
+    yourMistakes: {type: String}
 });
 
 const Text = mongoose.model('Text', textSchema);

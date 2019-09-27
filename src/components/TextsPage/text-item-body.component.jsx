@@ -2,7 +2,7 @@ import React from 'react';
 import { TextItemBodySecondInfo } from './text-item-body-second-info.component'
 
 export const TextItemBody = (props) => {
-    const { caption, body, tags, language,rate } = props.text;
+    const { caption, bodyShort, tags, language, rate } = props.text;
 
     return (
         <div 
@@ -23,7 +23,7 @@ export const TextItemBody = (props) => {
                     </div>
                 </div>
                 <div id='body'>
-                    {body}
+                    {bodyShort}
                 </div>
                 <div id='footer'>
                     <div id='alph'><span>alphabet: </span>{language}</div>
