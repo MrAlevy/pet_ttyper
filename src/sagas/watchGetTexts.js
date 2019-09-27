@@ -33,12 +33,13 @@ function* getTextsFetchAsync(action) {
                 ? res.json() 
                 : false
         })
-        yield put(getTextsIsLoading(false))
         !data 
             ? yield put(getTextsError(true))
             : yield put(getTextsSuccess(data))
+        yield put(getTextsIsLoading(false))
     } catch (err) {
         console.log(err)
+        yield put(getTextsIsLoading(false))
         yield put(getTextsError(true))
     }
 }

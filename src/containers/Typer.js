@@ -5,6 +5,10 @@ import { getTextsFetch } from '../actions';
 import './styles/texts.scss';
 import './styles/typer.scss';
 
+const mapStateToProps = (state) => ({
+  textFetch: state
+})
+
 const mapDispatchToProps = dispatch => ({
   getTextsFetch: (...args) => dispatch(getTextsFetch(...args))
 })
@@ -13,22 +17,33 @@ class Typer extends React.Component {
     super (props)
     
     this.state = {
-      rightText: this.props.location.state.body,
+      rightText: '',
       rightLetter: '',
       rightTextPast: '',
       isErrorLetter: false,
 
       isTypingStart: false,
     } 
+
   }
-     
+
   componentDidMount () {
-    this.props.getTextsFetch('textById', '5d84b62e89078b23785df44c')
+    this.props.getTextsFetch('textById', this.props.match.params.id)
     document.addEventListener('keydown', this.handleKeyPress)
   }
 
   componentWillUnmount () {
     document.removeEventListener('keydown', this.handleKeyPress)
+  }
+
+  componentDidUpdate (prevProps) {
+    if (this.props.textFetch.textsIsLoading !== prevProps.textFetch.textsIsLoading) {
+      this.setState({rightText: this.props.textFetch.texts.bodyFull})
+      console.log(
+        'componentDidUpdate: (textsIsLoading prev this comparison):',
+        prevProps.textFetch.textsIsLoading, this.props.textFetch.textsIsLoading
+      )
+    }
   }
 
   /*
@@ -94,6 +109,7 @@ class Typer extends React.Component {
   }
 
   render() {
+
     return (
 
       <div className='dataCont typer-cont'>
@@ -116,4 +132,4 @@ class Typer extends React.Component {
   }
 }
 
-export default connect(null,mapDispatchToProps)(Typer)
+export default connect(mapStateToProps, mapDispatchToProps)(Typer)

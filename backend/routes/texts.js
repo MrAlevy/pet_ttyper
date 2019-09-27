@@ -3,7 +3,7 @@ const Text = require('../models/text.model');
 
 // get all texts
 router.route('/').get((req, res) => {
-  Text.find()
+  Text.find({}, {bodyFull: 0})
     .then(texts => res.json(texts))
     .catch(err => res.status(400).json('Error: ' + err));
 });

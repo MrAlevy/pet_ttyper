@@ -7,11 +7,16 @@ const textSchema = new Schema({
         type: String, 
         required: true,
     },
-    body: {
+    bodyFull: {
         type: String,
         required: true,
         trim: true,
         minlength: 25,
+    },
+    bodyShort: {
+        type: String,
+        required: true,
+        trim: true,
     },
     tags: {
         type: String,
@@ -28,14 +33,18 @@ const textSchema = new Schema({
     yourSpeed: {
         type: Number,
     },
+    yourMistakes: {
+        type: Number,
+    },
     bestSpeed: {
         type: Number,
     },
     bestSpeedOwner: {
         type: String,
-    }
-}, {
-  timestamps: true,
+    },
+    bestSpeedOwnerMistakes: {
+        type: Number,
+    },
 });
 
 const Text = mongoose.model('Text', textSchema);
