@@ -10,22 +10,33 @@ export function* watchGetTexts() {
     yield takeEvery(GET_TEXTS_FETCH, getTextsFetchAsync)
 }
 
-function* getTextsFetchAsync() {
+function* getTextsFetchAsync(action) {
     try {
+        console.log('saga action: ', action)
         yield put(getTextsError(false))
         yield put(getTextsIsLoading(true))
-        const userInfo = yield call(async () => {
-            const res = await fetch(
-                `http://localhost:3001/api/texts/`
-            )
+        const data = yield call(async () => {
+            let res
+
+            switch (action.whatsFetching) {
+                case 'allTexts':
+                    res = await fetch(`http://localhost:3001/api/texts/`)
+                    break;
+                case 'textById':
+                    res = await fetch(`http://localhost:3001/api/texts/${action.id}`)
+                    break;
+                default:
+                    return;
+            }
+
             return res.ok 
                 ? res.json() 
                 : false
         })
         yield put(getTextsIsLoading(false))
-        !userInfo 
+        !data 
             ? yield put(getTextsError(true))
-            : yield put(getTextsSuccess(userInfo))
+            : yield put(getTextsSuccess(data))
     } catch (err) {
         console.log(err)
         yield put(getTextsError(true))

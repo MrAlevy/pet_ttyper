@@ -1,8 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { getTextsFetch } from '../actions';
 //import { TextItemBodySecondInfo } from '../components/TextsPage/text-item-body-second-info.component'
 import './styles/texts.scss';
 import './styles/typer.scss';
-export default class Typer extends React.Component {
+
+const mapDispatchToProps = dispatch => ({
+  getTextsFetch: (...args) => dispatch(getTextsFetch(...args))
+})
+class Typer extends React.Component {
   constructor (props) {
     super (props)
     
@@ -17,6 +23,7 @@ export default class Typer extends React.Component {
   }
      
   componentDidMount () {
+    this.props.getTextsFetch('textById', '5d84b62e89078b23785df44c')
     document.addEventListener('keydown', this.handleKeyPress)
   }
 
@@ -108,3 +115,5 @@ export default class Typer extends React.Component {
     )
   }
 }
+
+export default connect(null,mapDispatchToProps)(Typer)

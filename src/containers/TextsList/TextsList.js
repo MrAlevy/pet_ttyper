@@ -4,7 +4,7 @@ import { getTextsFetch } from '../../actions';
 import { Text } from './TextItem.js';
 
 const mapDispatchToProps = dispatch => ({
-    getTextsFetch: () => dispatch(getTextsFetch())
+    getTextsFetch: (...args) => dispatch(getTextsFetch(...args))
 })
 
 const mapStateToProps = (state) => ({
@@ -16,7 +16,7 @@ const mapStateToProps = (state) => ({
 class TextsList extends React.Component {
   
     componentDidMount() {
-        this.props.getTextsFetch()
+        this.props.getTextsFetch('allTexts')
     }
     
     render() {

@@ -5,8 +5,10 @@ import {
     GET_TEXTS_FETCH
 } from '../constants/ActionTypes'
 
-export const getTextsFetch = () => ({
-    type: GET_TEXTS_FETCH
+export const getTextsFetch = (whatsFetching, id) => ({
+    type: GET_TEXTS_FETCH,
+    whatsFetching,
+    id
 })
 
 export const getTextsSuccess = (textsArr) => ({
