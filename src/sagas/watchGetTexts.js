@@ -15,7 +15,9 @@ function* getTextsFetchAsync() {
         yield put(getTextsError(false))
         yield put(getTextsIsLoading(true))
         const userInfo = yield call(async () => {
-            const res = await fetch(`http://localhost:5000/texts/`)
+            const res = await fetch(
+                `http://localhost:3001/api/texts/`
+            )
             return res.ok 
                 ? res.json() 
                 : false

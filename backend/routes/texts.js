@@ -1,14 +1,21 @@
 const router = require('express').Router();
 const Text = require('../models/text.model');
 
+// get all texts
 router.route('/').get((req, res) => {
   Text.find()
     .then(texts => res.json(texts))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/add').post((req, res) => {
+// get one text by id
+router.route('/:id').get((req, res) => {
+  Text.findById(req.params.id)
+    .then(texts => res.json(texts))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
 
+router.route('/add').post((req, res) => {
   const newText = new Text(
     req.body
   );
