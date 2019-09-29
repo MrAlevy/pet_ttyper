@@ -22,7 +22,7 @@ export const TextsSelector = () => {
             <select                            
                 name='sortBy' 
                 className='second-menu-item sort-by'
-                onChange={(e) => dispatch(getTextsFetch('textsSortBy', undefined, e.target.value))} 
+                onChange={(e) => dispatch(getTextsFetch('allTexts', undefined, e.target.value))} 
             >
                 <option value='nosort'>-</option>
                 <option value='rate'>rate</option>
@@ -32,9 +32,9 @@ export const TextsSelector = () => {
             <select                            
                 name='language' 
                 className='second-menu-item language'
-                onChange={(e) => dispatch(setAlph(e.target.value))} 
+                onChange={(e) => dispatch(getTextsFetch('allTexts', undefined, undefined, e.target.value))} 
             >
-                <option value='nosort'>-</option>
+                <option value='noalphabet'>-</option>
                 <option value='latin'>latin</option>
                 <option value='cyrillic'>cyrillic</option>
             </select>

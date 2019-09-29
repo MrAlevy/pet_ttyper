@@ -20,16 +20,13 @@ function* getTextsFetchAsync(action) {
 
             switch (action.whatsFetching) {
                 case 'allTexts':
-                    res = await fetch(`http://localhost:3001/api/texts/`)
+                    res = await fetch(`http://localhost:3001/api/texts/?sortBy=${action.sortBy}&alphabet=${action.alphabet}`)
                     break;
                 case 'textById':
                     res = await fetch(`http://localhost:3001/api/texts/${action.id}`)
                     break;
-                case 'textsSortBy':
-                    res = await fetch(`http://localhost:3001/api/texts/?sortBy=${action.sortBy}`)
-                    break;
                 default:
-                    res = await fetch(`http://localhost:3001/api/texts/`)
+                    res = await fetch(`http://localhost:3001/api/texts/?sortBy=${action.sortBy}}&alphabet=${action.alphabet}`)
             }
 
             return res.ok 

@@ -19,8 +19,11 @@ router.route('/').get((req, res) => {
         break;
 
     default:
-      console.log('nosort')
-      Text.find({}, { bodyFull: 0 })
+      console.log('nosort', req.query.alphabet)
+      Text.find(
+        alphabetFilter(req.query.alphabet), 
+        { bodyFull: 0 }
+      )
         .then(texts => res.json(texts))
         .catch(err => res.status(400).json('Error: ' + err));
   }
@@ -69,5 +72,12 @@ router.route('/update/:id').post((req, res) => {
     })
     .catch(err => res.status(400).json('Error: ' + err));
 }); */
+
+// add to find texts in db matching language field
+const alphabetFilter = (alphabet) => {
+  return alphabet === 'noalphabet' 
+    ? {} 
+    : { language: alphabet }
+}
 
 module.exports = router;
