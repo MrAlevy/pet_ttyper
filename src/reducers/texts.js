@@ -1,7 +1,9 @@
 import { 
     GET_TEXTS_SUCCESS, 
     GET_TEXTS_IS_LOADING, 
-    GET_TEXTS_ERROR 
+    GET_TEXTS_ERROR,
+    SORT_BY_FILTER,
+    ALPHABET_FILTER
 } from '../constants/ActionTypes'
 
 export const texts = (state={}, action) => {
@@ -31,12 +33,20 @@ export const textsError = (state=false, action) => {
     }
 }
 
-
-
-export const alph = (state='noalphabet', action) => {
+export const sortByFilter = (state='nosort', action) => {
     switch (action.type) {
-        case 'SET_ALPH':
-            return action.alph
-        default: return state
+        case SORT_BY_FILTER:
+            return action.payload
+        default: 
+            return state
+    }
+}
+
+export const alphabetFilter = (state='noalphabet', action) => {
+    switch (action.type) {
+        case ALPHABET_FILTER:
+            return action.payload
+        default: 
+            return state
     }
 }

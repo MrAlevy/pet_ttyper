@@ -6,14 +6,24 @@ router.route('/').get((req, res) => {
   switch (req.query.sortBy) {
     case 'rate':
         console.log('sort by rate')
-        Text.find({}, { bodyFull: 0 }).sort({ rate: -1 })
+        Text
+          .find(
+            alphabetFilter(req.query.alphabet), 
+            { bodyFull: 0 }
+          )
+          .sort({ rate: -1 })
           .then(texts => res.json(texts))
           .catch(err => res.status(400).json('Error: ' + err));
         break;
 
     case 'date':
         console.log('sort by date')
-        Text.find({}, { bodyFull: 0 }).sort({ createdAt: -1 })
+        Text
+          .find(
+            alphabetFilter(req.query.alphabet), 
+            { bodyFull: 0 }
+          )
+          .sort({ createdAt: -1 })
           .then(texts => res.json(texts))
           .catch(err => res.status(400).json('Error: ' + err));
         break;

@@ -1,9 +1,13 @@
 import { combineReducers } from 'redux'
-import { texts, textsIsLoading, textsError, alph } from './texts'
+import { 
+    texts, textsIsLoading, textsError,
+    sortByFilter, alphabetFilter
+} from './texts'
 
 export default combineReducers({
     texts,
     textsIsLoading,
     textsError,
-    alph
+    sortByFilter,
+    alphabetFilter
 })
