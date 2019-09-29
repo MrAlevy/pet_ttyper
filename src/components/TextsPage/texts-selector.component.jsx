@@ -1,11 +1,16 @@
 import React from 'react';
-
-const handleChange = (e) => {
-    console.log(e.target.name + ':' + e.target.value)
-}
+import { useDispatch } from 'react-redux';
+import { getTextsFetch, setAlph } from '../../actions';
 
 export const TextsSelector = () => { 
-    return (    
+    const dispatch = useDispatch()
+
+    const handleChange = (e) => {
+        console.log(e.target.name + ':' + e.target.value)
+    }
+
+
+    return (   
         <div className='second-menu'>
             <input
                 name='search'
@@ -17,9 +22,9 @@ export const TextsSelector = () => {
             <select                            
                 name='sortBy' 
                 className='second-menu-item sort-by'
-                onChange={(e) => handleChange(e)} 
+                onChange={(e) => dispatch(getTextsFetch('textsSortBy', undefined, e.target.value))} 
             >
-                <option value=''>-</option>
+                <option value='nosort'>-</option>
                 <option value='rate'>rate</option>
                 <option value='date'>date</option>
             </select>
@@ -27,9 +32,9 @@ export const TextsSelector = () => {
             <select                            
                 name='language' 
                 className='second-menu-item language'
-                onChange={(e) => handleChange(e)} 
+                onChange={(e) => dispatch(setAlph(e.target.value))} 
             >
-                <option value=''>-</option>
+                <option value='nosort'>-</option>
                 <option value='latin'>latin</option>
                 <option value='cyrillic'>cyrillic</option>
             </select>

@@ -25,8 +25,11 @@ function* getTextsFetchAsync(action) {
                 case 'textById':
                     res = await fetch(`http://localhost:3001/api/texts/${action.id}`)
                     break;
+                case 'textsSortBy':
+                    res = await fetch(`http://localhost:3001/api/texts/?sortBy=${action.sortBy}`)
+                    break;
                 default:
-                    return;
+                    res = await fetch(`http://localhost:3001/api/texts/`)
             }
 
             return res.ok 

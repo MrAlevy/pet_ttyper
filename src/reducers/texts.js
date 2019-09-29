@@ -30,3 +30,13 @@ export const textsError = (state=false, action) => {
             return state
     }
 }
+
+
+
+export const alph = (state='noalphabet', action) => {
+    switch (action.type) {
+        case 'SET_ALPH':
+            return action.alph
+        default: return state
+    }
+}

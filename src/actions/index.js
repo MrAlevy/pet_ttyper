@@ -5,10 +5,12 @@ import {
     GET_TEXTS_FETCH
 } from '../constants/ActionTypes'
 
-export const getTextsFetch = (whatsFetching, id) => ({
+export const getTextsFetch = (whatsFetching, id, sortBy = 'nosort', alphabet = 'noalphabet') => ({
     type: GET_TEXTS_FETCH,
     whatsFetching,
-    id
+    id,
+    sortBy,
+    alphabet
 })
 
 export const getTextsSuccess = (textsArr) => ({
@@ -24,4 +26,9 @@ export const getTextsIsLoading = (bool) => ({
 export const getTextsError = (bool) => ({
     type: GET_TEXTS_ERROR,
     error: bool
+})
+
+export const setAlph = (alph) => ({
+    type: 'SET_ALPH',
+    alph
 })

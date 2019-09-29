@@ -1,11 +1,29 @@
 const router = require('express').Router();
 const Text = require('../models/text.model');
 
-// get all texts
+// get text list
 router.route('/').get((req, res) => {
-  Text.find({}, {bodyFull: 0})
-    .then(texts => res.json(texts))
-    .catch(err => res.status(400).json('Error: ' + err));
+  switch (req.query.sortBy) {
+    case 'rate':
+        console.log('sort by rate')
+        Text.find({}, { bodyFull: 0 }).sort({ rate: -1 })
+          .then(texts => res.json(texts))
+          .catch(err => res.status(400).json('Error: ' + err));
+        break;
+
+    case 'date':
+        console.log('sort by date')
+        Text.find({}, { bodyFull: 0 }).sort({ createdAt: -1 })
+          .then(texts => res.json(texts))
+          .catch(err => res.status(400).json('Error: ' + err));
+        break;
+
+    default:
+      console.log('nosort')
+      Text.find({}, { bodyFull: 0 })
+        .then(texts => res.json(texts))
+        .catch(err => res.status(400).json('Error: ' + err));
+  }
 });
 
 // get one text by id

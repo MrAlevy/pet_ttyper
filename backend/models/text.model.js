@@ -39,11 +39,10 @@ const textSchema = new Schema({
     bestSpeedOwnerMistakes: {
         type: String,
     },
-    uploadDate: {
-        type: String,
-    },
     yourSpeed: {type: Number}, // for TESTING
     yourMistakes: {type: String} // for TESTING
+}, {
+    timestamps: true
 });
 
 const Text = mongoose.model('Text', textSchema);

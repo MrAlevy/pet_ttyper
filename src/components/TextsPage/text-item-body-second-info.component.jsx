@@ -2,9 +2,12 @@ import React from 'react';
 
 export const TextItemBodySecondInfo = (props) => {
     const { 
-        owner, bestSpeed, bestSpeedOwner, uploadDate,
-        bestSpeedOwnerMistakes
+        owner, bestSpeed, bestSpeedOwner,
+        bestSpeedOwnerMistakes, createdAt
     } = props.text;
+
+    const uploadDate = new Date(createdAt)
+    const datePretty = `${('0' + uploadDate.getDate()).slice(-2)}.${('0' + (uploadDate.getMonth() + 1)).slice(-2)}.${uploadDate.getFullYear()}`
 
     return (
     <div id='second-info'>
@@ -16,7 +19,7 @@ export const TextItemBodySecondInfo = (props) => {
         </div>
         <div id='data'>
             <span>{owner || '-'}</span>
-            <span>{uploadDate || '-'}</span> 
+            <span>{datePretty || '-'}</span> 
             <span>
                 <span id='speed'>
                     000
