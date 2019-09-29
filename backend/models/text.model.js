@@ -42,8 +42,8 @@ const textSchema = new Schema({
     uploadDate: {
         type: String,
     },
-    yourSpeed: {type: Number},
-    yourMistakes: {type: String}
+    yourSpeed: {type: Number}, // for TESTING
+    yourMistakes: {type: String} // for TESTING
 });
 
 const Text = mongoose.model('Text', textSchema);

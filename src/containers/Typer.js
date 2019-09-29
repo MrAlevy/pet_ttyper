@@ -28,8 +28,8 @@ class Typer extends React.Component {
   }
 
   componentDidMount () {
-    this.props.getTextsFetch('textById', this.props.match.params.id)
-    document.addEventListener('keydown', this.handleKeyPress)
+    this.props.getTextsFetch('textById', this.props.match.params.id) // dispatch action - get the text by id
+    document.addEventListener('keydown', this.handleKeyPress) // listen keyboard for typing
   }
 
   componentWillUnmount () {
@@ -38,7 +38,7 @@ class Typer extends React.Component {
 
   componentDidUpdate (prevProps) {
     if (this.props.textFetch.textsIsLoading !== prevProps.textFetch.textsIsLoading) {
-      this.setState({rightText: this.props.textFetch.texts.bodyFull})
+      this.setState({rightText: this.props.textFetch.texts.bodyFull}) // if loading text complete - send to state
       console.log(
         'componentDidUpdate: (textsIsLoading prev this comparison):',
         prevProps.textFetch.textsIsLoading, this.props.textFetch.textsIsLoading
@@ -101,7 +101,7 @@ class Typer extends React.Component {
       )
     }
     else if (this.state.rightTextPast !== '') {
-      // if input letter is wrong - write the wrong letter to input
+      // if input letter is wrong
       this.setState({
         isErrorLetter: true,
       })

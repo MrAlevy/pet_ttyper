@@ -3,7 +3,7 @@ import { Redirect } from 'react-router';
 import { TextItemBody } from '../../components/TextsPage/text-item-body.component';
 
 export const Text = (props) => {
-    // isTypingStart - start to type, if false - render texts list
+    // isTypingStart - redirect to start to type, if false - render text preview
     const [isTypingStart, setIsTypingStart] = useState(false);
 
     const showModal = () => setIsTypingStart(true)
@@ -16,7 +16,7 @@ export const Text = (props) => {
                 <Redirect 
                     to={{
                         pathname: `/texts/type/${_id}`,
-                        state: props.text
+                      //  state: props.text - replace on fetching text by id
                     }} 
                 />
             : 

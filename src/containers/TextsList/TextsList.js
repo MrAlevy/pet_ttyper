@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { getTextsFetch } from '../../actions';
 import { Text } from './TextItem.js';
+import { Spinner } from '../../components/Additionals/spinner/spinner';
 
 const mapDispatchToProps = dispatch => ({
     getTextsFetch: (...args) => dispatch(getTextsFetch(...args))
@@ -16,14 +17,17 @@ const mapStateToProps = (state) => ({
 class TextsList extends React.Component {
   
     componentDidMount() {
+        // dispatch action - get all texts
         this.props.getTextsFetch('allTexts')
     }
     
     render() {
         let textsList = []
 
-        if (this.props.texts.length) {
+        // if texts load in props complete - forming the list
+        if (this.props.texts.length) { 
             const texts = this.props.texts
+
             textsList = texts.map(text => 
                 <Text key={text._id} text={text} />
             )
@@ -32,10 +36,10 @@ class TextsList extends React.Component {
         return (
             <div className='main-cont texts-list'>
                 {this.props.textsIsLoading
-                    ? <span>load...</span>
+                    ? <div id='msg'><Spinner /></div>
                     : this.props.textsError
-                        ? <span>error!</span>
-                        : textsList}
+                        ? <div id='msg'>Error! Trying later.</div>
+                        : textsList} 
             </div>
         )
     }

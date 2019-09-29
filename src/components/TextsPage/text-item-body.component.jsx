@@ -15,10 +15,11 @@ export const TextItemBody = (props) => {
                     <div id='tool'>
                         <div><i className="material-icons">delete</i></div>
                         <div><i className="material-icons">create</i></div>
-                        <div>
-                            <i className="material-icons">star</i> 
-                           {/* <i className="material-icons">star_border</i> */}
-                            {rate} 
+                        <div id='rate'>
+                            <div id='rate-value'>{rate}</div> 
+                            <i className="material-icons star">star_border</i> 
+                           {/* <i className="material-icons">star</i> */}
+                            
                         </div>
                     </div>
                 </div>
