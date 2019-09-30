@@ -67,9 +67,21 @@ const alphabetFilter = (alphabet) => {
 
 // add search field filter (caption, bodyShort, tags only)
 const searchFilter = (keyWords) => {
-  console.log(keyWords)
+  keyWordsArr = keyWords.split(' ').filter(e => e)
+
+  const searchParams = {
+    $regex: keyWords, 
+    $options: "$i"
+  }
+
   if (keyWords !== 'nosearch') {
-    return { caption: { $regex: keyWords, $options: "$i" } }
+    return { 
+      $or: [
+        {caption: searchParams},
+        {bodyShort: searchParams},
+        {tags: searchParams},
+      ] 
+    }
   }
 }
 

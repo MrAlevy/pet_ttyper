@@ -27,10 +27,6 @@ export const TextsSelector = () => {
         dispatch(getTextsFetch('allTexts', undefined, sortByFilter, alphabetFilter, searchFilter));
     }
 
-    const handleClick = (e) => {
-        e.target.value = ''
-    }
-
     return (   
         <div className='second-menu'>
             <input
