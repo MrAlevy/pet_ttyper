@@ -1,6 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 export const NavbarLeftMenu = () => { 
+    // _id exist means that typing window is open - need to change bright color
+    const isTyper = useSelector(state => state.texts._id);
+
     return (    
         <div className='left-menu'>
             <div id='avatar'>
@@ -19,8 +23,14 @@ export const NavbarLeftMenu = () => {
 }
 
 export const Logo = () => {
+    // _id exist means that typing window is open - need to change bright color
+    const isTyper = useSelector(state => state.texts._id); 
+
     return (    
-        <div id='logo'>
+        <div 
+            id='logo'
+            style={isTyper && {color: '#959595'}}
+        >
             <span>TTyper !</span>
         </div>
     )

@@ -2,7 +2,6 @@ import React from 'react';
 import './styles/typer.scss';
 
 export const TyperMain = (props) => {
-    console.log(props)
     const { 
         isErrorLetter, rightLetter, rightText, rightTextPast 
     } = props.state;

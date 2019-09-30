@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
+import './spinner.css';
 
 export const Spinner = () => {
     return (
-        <div>loading...</div>
+        <div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     )
 }

@@ -14,13 +14,14 @@ export function* watchGetTexts() {
 function* getTextsFetchAsync(action) {
     
     try {
-        console.log('saga action: ', action)
         yield put(getTextsError(false))
         yield put(getTextsIsLoading(true))
 
         let sortByFilter = yield select((state) => state.sortByFilter)
         let alphabetFilter = yield select((state) => state.alphabetFilter)
         let searchFilter = yield select((state) => state.searchFilter)
+        
+        console.log(`${action.whatsFetching}: ${sortByFilter} - ${alphabetFilter} - ${searchFilter}`)
 
         const data = yield call(async () => {
             let res

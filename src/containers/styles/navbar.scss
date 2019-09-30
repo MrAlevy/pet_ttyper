@@ -9,6 +9,7 @@
     --main-nav-color: rgba(168, 168, 168, 0.514);
     --second-border-color: rgba(168, 168, 168, 0.514);
     box-shadow: 0 0 8px black;
+    white-space: nowrap;
     
     #logo {
         font: normal 28px 'Pacifico', sans-serif;
@@ -17,6 +18,7 @@
         text-align: center;
         margin-top: -3px;
         margin-left: -22%;
+        user-select: none;
     }
 
     .left-menu {
@@ -37,6 +39,10 @@
                 border: 3px solid var(--main-nav-color);
                 border-radius: 50% 50% 50% 50%;
                 box-shadow: 0 0 8px black;
+            }
+
+            #mask {
+
             }
         }
 

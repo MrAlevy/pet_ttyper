@@ -67,8 +67,6 @@ const alphabetFilter = (alphabet) => {
 
 // add search field filter (caption, bodyShort, tags only)
 const searchFilter = (keyWords) => {
-  keyWordsArr = keyWords.split(' ').filter(e => e)
-
   const searchParams = {
     $regex: keyWords, 
     $options: "$i"
