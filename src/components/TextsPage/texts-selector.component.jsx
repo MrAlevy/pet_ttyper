@@ -1,27 +1,34 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTextsFetch, setSortByFilter, setAlphabetFilter } from '../../actions';
+import { getTextsFetch, setSortByFilter, setAlphabetFilter, setSearchFilter } from '../../actions';
 
 export const TextsSelector = () => { 
     const dispatch = useDispatch();
 
     const sortByFilter = useSelector(state => state.sortByFilter);
     const alphabetFilter = useSelector(state => state.alphabetFilter);
+    const searchFilter = useSelector(state => state.searchFilter);
 
     const handleChange = (e) => {
         console.log(e.target.name + ':' + e.target.value);
         switch (e.target.name) {
             case 'sortBy':
                 dispatch(setSortByFilter(e.target.value));
-                dispatch(getTextsFetch('allTexts', undefined, sortByFilter, alphabetFilter));
                 break;
             case 'language':
                 dispatch(setAlphabetFilter(e.target.value));
-                dispatch(getTextsFetch('allTexts', undefined, sortByFilter, alphabetFilter));
+                break;
+            case 'search':
+                dispatch(setSearchFilter(e.target.value));
                 break;
             default: 
                 return
         }
+        dispatch(getTextsFetch('allTexts', undefined, sortByFilter, alphabetFilter, searchFilter));
+    }
+
+    const handleClick = (e) => {
+        e.target.value = ''
     }
 
     return (   
@@ -29,8 +36,9 @@ export const TextsSelector = () => {
             <input
                 name='search'
                 className='second-menu-item search'
-                onChange={() => {}}     
-                value='search...'
+                onChange={(e) => handleChange(e)}
+                placeholder='search ...'
+                value={searchFilter === 'nosearch' ? '' : searchFilter}
             />
             <label htmlFor='sortBy'>sort by: </label>
             <select                            

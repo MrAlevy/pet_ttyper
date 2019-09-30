@@ -3,7 +3,8 @@ import {
     GET_TEXTS_IS_LOADING, 
     GET_TEXTS_ERROR,
     SORT_BY_FILTER,
-    ALPHABET_FILTER
+    ALPHABET_FILTER,
+    SEARCH_FILTER
 } from '../constants/ActionTypes'
 
 export const texts = (state={}, action) => {
@@ -45,6 +46,15 @@ export const sortByFilter = (state='nosort', action) => {
 export const alphabetFilter = (state='noalphabet', action) => {
     switch (action.type) {
         case ALPHABET_FILTER:
+            return action.payload
+        default: 
+            return state
+    }
+}
+
+export const searchFilter = (state='nosearch', action) => {
+    switch (action.type) {
+        case SEARCH_FILTER:
             return action.payload
         default: 
             return state

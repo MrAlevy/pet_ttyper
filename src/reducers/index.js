@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import { 
     texts, textsIsLoading, textsError,
-    sortByFilter, alphabetFilter
+    sortByFilter, alphabetFilter, searchFilter
 } from './texts'
 
 export default combineReducers({
@@ -9,5 +9,6 @@ export default combineReducers({
     textsIsLoading,
     textsError,
     sortByFilter,
-    alphabetFilter
+    alphabetFilter,
+    searchFilter
 })

@@ -20,19 +20,19 @@ function* getTextsFetchAsync(action) {
 
         let sortByFilter = yield select((state) => state.sortByFilter)
         let alphabetFilter = yield select((state) => state.alphabetFilter)
+        let searchFilter = yield select((state) => state.searchFilter)
 
         const data = yield call(async () => {
             let res
 
             switch (action.whatsFetching) {
                 case 'allTexts':
-                    res = await fetch(`http://localhost:3001/api/texts/?sortBy=${sortByFilter}&alphabet=${alphabetFilter}`)
+                default: 
+                    res = await fetch(`http://localhost:3001/api/texts/?sortBy=${sortByFilter}&alphabet=${alphabetFilter}&search=${searchFilter}`)
                     break;
                 case 'textById':
                     res = await fetch(`http://localhost:3001/api/texts/${action.id}`)
                     break;
-                default:
-                    res = await fetch(`http://localhost:3001/api/texts/?sortBy=${sortByFilter}}&alphabet=${alphabetFilter}`)
             }
 
             return res.ok 

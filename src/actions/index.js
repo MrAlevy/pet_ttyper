@@ -4,15 +4,17 @@ import {
     GET_TEXTS_ERROR,
     GET_TEXTS_FETCH,
     SORT_BY_FILTER,
-    ALPHABET_FILTER
+    ALPHABET_FILTER,
+    SEARCH_FILTER
 } from '../constants/ActionTypes'
 
-export const getTextsFetch = (whatsFetching, id, sortBy = 'nosort', alphabet = 'noalphabet') => ({
+export const getTextsFetch = (whatsFetching, id, sortBy = 'nosort', alphabet = 'noalphabet', search = 'nosearch') => ({
     type: GET_TEXTS_FETCH,
     whatsFetching,
     id,
     sortBy,
-    alphabet
+    alphabet,
+    search
 })
 
 export const getTextsSuccess = (textsArr) => ({
@@ -38,4 +40,9 @@ export const setSortByFilter = (sortBy) => ({
 export const setAlphabetFilter = (alphabet) => ({
     type: ALPHABET_FILTER,
     payload: alphabet
+})
+
+export const setSearchFilter = (keyWords) => ({
+    type: SEARCH_FILTER,
+    payload: keyWords
 })
