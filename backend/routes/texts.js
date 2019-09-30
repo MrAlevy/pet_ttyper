@@ -16,7 +16,7 @@ router.route('/').get((req, res) => {
 
 // get one text by id
 router.route('/:id').get((req, res) => {
-  Text.findById(req.params.id)
+  Text.findById(req.params.id, { bodyShort: 0 })
     .then(texts => res.json(texts))
     .catch(err => res.status(400).json('Error: ' + err));
 });

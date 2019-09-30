@@ -2,20 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { getTextsFetch } from '../actions';
 //import { TextItemBodySecondInfo } from '../components/TextsPage/text-item-body-second-info.component'
+import { TyperMain } from '../components/TextsPage/typer-main.component';
 import './styles/texts.scss';
-import './styles/typer.scss';
 
 const mapStateToProps = (state) => ({
   textFetch: state
 })
-
 const mapDispatchToProps = dispatch => ({
   getTextsFetch: (...args) => dispatch(getTextsFetch(...args))
 })
+
+
+
 class Typer extends React.Component {
   constructor (props) {
     super (props)
-    
+
     this.state = {
       rightText: '',
       rightLetter: '',
@@ -38,7 +40,7 @@ class Typer extends React.Component {
 
   componentDidUpdate (prevProps) {
     if (this.props.textFetch.textsIsLoading !== prevProps.textFetch.textsIsLoading) {
-      this.setState({rightText: this.props.textFetch.texts.bodyFull}) // if loading text complete - send to state
+      this.setState({rightText: this.props.textFetch.texts.bodyFull}) // if loading text complete - send text to state
       console.log(
         'componentDidUpdate: (textsIsLoading prev this comparison):',
         prevProps.textFetch.textsIsLoading, this.props.textFetch.textsIsLoading
@@ -109,25 +111,8 @@ class Typer extends React.Component {
   }
 
   render() {
-
     return (
-
-      <div className='dataCont typer-cont'>
-        <div id='text-typer-cont'>
-
-          <div id='right-text-line'>
-            <div className='text-t right-text-past'>{this.state.rightTextPast}</div>
-            <div className={this.state.isErrorLetter ? 'text-t right-letter right-letter-error' : 'text-t right-letter'}>{this.state.rightLetter}</div>
-            <div className='text-t right-text'>{this.state.rightText && this.state.rightText.slice(0, 35)}</div>
-          </div>
-          
-        </div>
-
-          {/* <TextItemBodySecondInfo 
-              text={this.props.location.state}
-          /> */}
-
-      </div>
+      <TyperMain state={this.state} textInfo={this.props.textFetch.texts}/>
     )
   }
 }
