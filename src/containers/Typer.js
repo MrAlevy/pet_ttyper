@@ -28,6 +28,8 @@ class Typer extends React.Component {
             avgSpeed: 0,
             curSpeed: 0,
             lettersEnteredSnapShot: 0,
+
+            TEXT_LENGTH: 0
         }
     }
 
@@ -47,7 +49,10 @@ class Typer extends React.Component {
     componentDidUpdate(prevProps) {
         if (this.props.textFetch.textsIsLoading !== prevProps.textFetch.textsIsLoading) {
             // if loading text from db is complete - send text to state
-            this.setState({ rightText: this.props.textFetch.texts.bodyFull })
+            this.setState({ 
+                rightText: this.props.textFetch.texts.bodyFull,
+            })
+           
             console.log(
                 'componentDidUpdate: (textsIsLoading prev this comparison):',
                 prevProps.textFetch.textsIsLoading, this.props.textFetch.textsIsLoading
@@ -117,6 +122,7 @@ class Typer extends React.Component {
         ) {
             this.setState(
                 {
+                    TEXT_LENGTH:  this.state.rightText.length,
                     rightLetter: this.state.rightText[0],
                     rightText: this.state.rightText.slice(1),
                     rightTextPast: ' ',

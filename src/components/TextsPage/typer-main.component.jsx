@@ -4,7 +4,7 @@ import './styles/typer.scss';
 export const TyperMain = (props) => {
     const { 
         isErrorLetter, rightLetter, rightText, rightTextPast, 
-        mistakes, lettersEntered, avgSpeed, curSpeed
+        mistakes, lettersEntered, avgSpeed, curSpeed, TEXT_LENGTH
     } = props.state;
     
     const {
@@ -35,14 +35,20 @@ export const TyperMain = (props) => {
 
             <div id='text-typer-cur-data'>
                 <div>avg speed: <div>{avgSpeed || 0}</div></div>
-                <div>miss: <div>{miss || 0}</div>%</div>
+                <div>miss: <div>{miss < 100 ? miss : miss >= 100 ? 100 : 0}</div>%</div>
                 curSpeed: {curSpeed}
             </div>
 
-            <div 
-                id='typer-cur-speed-diagram'
-                style={{width: curSpeed}}
-            >
+            <div id='typer-speed-diagram'>
+                <div>
+                    <div id='cur-speed' style={{width: curSpeed}}>
+                        <div id='avg-speed' style={{width: avgSpeed}}>
+                            <div id='best-speed' style={{width: bestSpeed}}>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div id='text-typer-cont'>
@@ -55,10 +61,11 @@ export const TyperMain = (props) => {
                 </div>
             </div>
 
-            <div
-                id='typer-progress'
-            >
-                <div><div style={{paddingLeft: (Math.round(100*rightTextPast/(rightTextPast + rightLetter + rightText)) || 0) + '%'}}>o</div></div>
+            <div id='typer-progress'>
+                <div>
+                    <div style={{width: (100*lettersEntered/TEXT_LENGTH) + '%'}}>
+                    </div>
+                </div>
             </div>
         </div>
     )

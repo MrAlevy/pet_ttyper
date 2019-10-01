@@ -104,26 +104,68 @@
     pointer-events: none;
 }
 
-#typer-cur-speed-diagram {
-    width: 10px;
+#typer-speed-diagram {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 20px;
-    background-color: black;
-    transition: 8s;
+    margin-top: 15%;
+
+    div {
+        display: flex;
+        align-items: center;
+        width: 70%;
+        height: 100%;
+        background-color: #f6e4e443;
+
+        #cur-speed {
+            transition: 5s;
+            transition-timing-function: ease;
+            width: 0%;
+            height: 100%;
+            background-color: #5e242473;
+            
+            #avg-speed {
+                transition: 5s;
+                transition-timing-function: ease;
+                width: 0%;
+                height: 100%;
+                background-color: #1ac3367e;
+
+                #best-speed {
+                    border-right: 1px solid red;
+                }
+            }
+        }
+    }
 }
 
 #typer-progress {
     display: flex;
     justify-content: center;
-    background-color: #ffd400;
+    height: 3px;
+    margin-top: 15%;
 
     div {
-        width: 80%;
-        background-color: #1cc524;
+        width: 30%;
+        background-color: #9e97a0bf;
 
         div {
-            width: 1%;
-            background-color: #c51c1c;
-            //padding-left: 99%;
+            transition: 0.5s;
+            transition-timing-function: linear;
+            width: 0%;
+            height: 100%;
+            background-color: #255e2473;
+        }
+    }
+}
+
+#text-typer-main-info {
+    h1 {
+        font-size: 20px;
+
+        #text-typer-best-speed {
+            
         }
     }
 }
