@@ -1,120 +1,187 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { getTextsFetch } from '../actions';
-//import { TextItemBodySecondInfo } from '../components/TextsPage/text-item-body-second-info.component'
 import { TyperMain } from '../components/TextsPage/typer-main.component';
 import './styles/texts.scss';
 
 const mapStateToProps = (state) => ({
-  textFetch: state
+    textFetch: state
 })
 const mapDispatchToProps = dispatch => ({
-  getTextsFetch: (...args) => dispatch(getTextsFetch(...args))
+    getTextsFetch: (...args) => dispatch(getTextsFetch(...args))
 })
 
-
-
 class Typer extends React.Component {
-  constructor (props) {
-    super (props)
+    constructor(props) {
+        super(props)
 
-    this.state = {
-      rightText: '',
-      rightLetter: '',
-      rightTextPast: '',
-      isErrorLetter: false,
+        this.state = {
+            rightText: '',
+            rightLetter: '',
+            rightTextPast: '',
+            isErrorLetter: false,
 
-      isTypingStart: false,
-    } 
-
-  }
-
-  componentDidMount () {
-    this.props.getTextsFetch('textById', this.props.match.params.id) // dispatch action - get the text by id
-    document.addEventListener('keydown', this.handleKeyPress) // listen keyboard for typing
-  }
-
-  componentWillUnmount () {
-    document.removeEventListener('keydown', this.handleKeyPress)
-  }
-
-  componentDidUpdate (prevProps) {
-    if (this.props.textFetch.textsIsLoading !== prevProps.textFetch.textsIsLoading) {
-      this.setState({rightText: this.props.textFetch.texts.bodyFull}) // if loading text complete - send text to state
-      console.log(
-        'componentDidUpdate: (textsIsLoading prev this comparison):',
-        prevProps.textFetch.textsIsLoading, this.props.textFetch.textsIsLoading
-      )
-    }
-  }
-
-  /*
-  * main typing algorithm
-  */
-  handleKeyPress = (e) => {
-    // if push the space - start typing
-    e.keyCode === 32 && this.setState({isTypingStart: true})
-
-    // checking that input value not Shift, Ctrl etc...
-    let isValidKey = false;
-    if (
-      (e.keyCode >= 48 && e.keyCode <= 90)
-      || (e.keyCode >= 96 && e.keyCode <= 111)
-      || (e.keyCode >= 160 && e.keyCode <= 165)
-      || (e.keyCode >= 186 && e.keyCode <= 223)
-      || e.keyCode === 170
-      || e.keyCode === 32
-      || e.keyCode === 9
-      || e.keyCode === 13
-    ) { isValidKey = true }
-    if (!isValidKey) {return}
-     
-    const inputValue = e.key;
-
-    if (
-      this.state.rightTextPast === '' 
-      && this.state.isTypingStart
-    ) {
-      // starting space - start the typing - take the first word
-      this.setState({
-        rightLetter: this.state.rightText[0],
-        rightText: this.state.rightText.slice(1,),
-        rightTextPast: ' ',
-      })
-    }
-    else if (
-        inputValue === this.state.rightLetter
-        && inputValue.length === 1
-    ) {
-      // if input letter is right - send to correct
-      this.setState({
-        rightLetter: this.state.rightText[0],
-        rightText: this.state.rightText.slice(1,),
-        rightTextPast: this.state.rightTextPast + inputValue,
-        isErrorLetter: false,
-      }, () => {
-          if (this.state.rightTextPast.length >= 40) {
-            // if already right string is bigger than 40 symbols - cut it
-            this.setState({
-              rightTextPast: this.state.rightTextPast.slice(1, ),
-            })
-          }
+            isTyping: false,
+            lettersEntered: 0,
+            mistakes: 0,
+            timer: 0,
+            avgSpeed: 0,
+            curSpeed: 0,
+            lettersEnteredSnapShot: 0,
         }
-      )
     }
-    else if (this.state.rightTextPast !== '') {
-      // if input letter is wrong
-      this.setState({
-        isErrorLetter: true,
-      })
-    }
-  }
 
-  render() {
-    return (
-      <TyperMain state={this.state} textInfo={this.props.textFetch.texts}/>
-    )
-  }
+    componentDidMount() {
+        // dispatch action - get the text from db by id
+        this.props.getTextsFetch('textById', this.props.match.params.id);
+        // listen keyboard for typing
+        document.addEventListener('keydown', this.handleKeyPress);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.handleKeyPress);
+        // clear intervals
+        this.clearIntervals();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.textFetch.textsIsLoading !== prevProps.textFetch.textsIsLoading) {
+            // if loading text from db is complete - send text to state
+            this.setState({ rightText: this.props.textFetch.texts.bodyFull })
+            console.log(
+                'componentDidUpdate: (textsIsLoading prev this comparison):',
+                prevProps.textFetch.textsIsLoading, this.props.textFetch.textsIsLoading
+            )
+        }
+    }
+
+    setTimerIntervals = () => {
+        // simple second counter
+        this.timerInterval = setInterval(() => this.setState({
+            timer: this.state.timer + 1
+        }), 1000);
+
+        // average speed for all time (symbols per minute)
+        this.avgSpeedInterval = setInterval(() => this.setState({
+            avgSpeed: Math.round(60 * this.state.lettersEntered / this.state.timer)
+        }), 1000);
+
+        // current speed for last three seconds (symbols per minute)
+        this.curSpeedInterval = setInterval(() => this.setState({
+            curSpeed: 60 * (this.state.lettersEntered - this.state.lettersEnteredSnapShot) / 2,
+            lettersEnteredSnapShot: this.state.lettersEntered
+        }), 2000);
+    }
+
+    clearIntervals = () => {
+        // clear intervals
+        clearInterval(this.timerInterval);
+        clearInterval(this.avgSpeedInterval);
+        clearInterval(this.curSpeedInterval);
+    }
+
+    /**
+    * main typing algorithm
+    */
+    handleKeyPress = (e) => {
+        // if push the space - start typing
+        e.keyCode === 32 && this.setState({ isTyping: true })
+
+        // checking that input value not Shift, Ctrl etc...
+        let isValidKey = false;
+
+        if (
+            (e.keyCode >= 48 && e.keyCode <= 90)
+            || (e.keyCode >= 96 && e.keyCode <= 111)
+            || (e.keyCode >= 160 && e.keyCode <= 165)
+            || (e.keyCode >= 186 && e.keyCode <= 223)
+            || e.keyCode === 170
+            || e.keyCode === 32
+            || e.keyCode === 9
+            || e.keyCode === 13
+        ) { 
+            isValidKey = true 
+        }
+
+        if (!isValidKey) { 
+            return 
+        }
+
+        // get the pushed key
+        const inputValue = e.key;
+
+        // starting space - start the typing - take the first word
+        if (
+            this.state.rightTextPast === ''
+            && this.state.isTyping
+        ) {
+            this.setState(
+                {
+                    rightLetter: this.state.rightText[0],
+                    rightText: this.state.rightText.slice(1),
+                    rightTextPast: ' ',
+                }
+            )
+            // start the timers
+            this.setTimerIntervals()
+
+            console.log('typer: typing is start')
+
+        // if input letter is right - send to correct
+        } else if (
+            inputValue === this.state.rightLetter
+            && inputValue.length === 1
+        ) {
+            this.setState(
+                {
+                    rightLetter: this.state.rightText[0],
+                    rightText: this.state.rightText.slice(1),
+                    rightTextPast: this.state.rightTextPast + inputValue,
+                    isErrorLetter: false,
+                    lettersEntered: this.state.lettersEntered + 1,
+                }, () => {
+                    // if already right string is bigger than 40 symbols - cut it
+                    if (this.state.rightTextPast.length >= 40) {
+                        this.setState({
+                            rightTextPast: this.state.rightTextPast.slice(1),
+                        })
+                    }
+                }
+            )
+
+            // if text is over
+            if (!this.state.rightText && !this.state.rightLetter) {
+                console.log('typer: typing is end')
+
+                this.setState({ 
+                    isTyping: false,
+                    curSpeed: 0
+                });
+
+                // clear intervals
+                this.clearIntervals();
+
+                // remove listener
+                document.removeEventListener('keydown', this.handleKeyPress);
+            }
+
+        // if input letter is wrong
+        } else if (this.state.rightTextPast !== '') {
+            this.setState({
+                isErrorLetter: true,
+                mistakes: this.state.mistakes + 1,
+            })
+        }
+    }
+    /**
+    * main typing algorithm's end
+    */
+
+    render() {
+        return (
+            <TyperMain state={this.state} textInfo={this.props.textFetch.texts} />
+        )
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Typer)

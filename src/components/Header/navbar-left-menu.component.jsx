@@ -6,11 +6,11 @@ export const NavbarLeftMenu = () => {
     const isTyper = useSelector(state => state.texts._id);
 
     return (    
-        <div className='left-menu'>
+        <div className={'left-menu ' +  (isTyper && 'typer-gray-mode') }>
             <div id='avatar'>
                 <img 
                     alt='avatar'
-                    src={require('../../containers/images/guest_avatar.png')}
+                    src={ require('../../containers/images/guest_avatar.png') }
                 />
             </div>
             <div className='personal-data'>
@@ -29,7 +29,7 @@ export const Logo = () => {
     return (    
         <div 
             id='logo'
-            style={isTyper && {color: '#959595'}}
+            className={ isTyper && 'typer-gray-mode' }
         >
             <span>TTyper !</span>
         </div>

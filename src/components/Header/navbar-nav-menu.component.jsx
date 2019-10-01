@@ -1,9 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export const NavbarNavMenu = () => { 
+    // _id exist means that typing window is open - need to change bright color
+    const isTyper = useSelector(state => state.texts._id);
+
     return (
-        <nav>
+        <nav className={ isTyper && 'typer-gray-mode' }>
             <ul>
                 <NavLink 
                     to='/texts' 

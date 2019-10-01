@@ -296,36 +296,3 @@
         margin-right: 5px;
     }
 }
-
-.typer-cont {
-    border-radius: 5px;
-    background-color: rgb(182, 175, 189);
-    
-    #second-info {
-        display: flex;
-        width: 18%;
-        min-width: 150px;
-        line-height: 16px;
-        font-size: 12px;
-        white-space: nowrap;
-        margin-right: 10px;
-        margin-top: 600px;
-
-        #names {
-            display: flex;
-            flex-direction: column;
-            flex-wrap: nowrap;
-            align-items: flex-start;
-            width: 40%;
-            font-family: var(--second-font-family);
-            color: rgb(101, 101, 101);
-        }
-
-        #data {
-            display: flex;
-            flex-direction: column;
-            width: 50%;
-            font-size: 13px;
-        }
-    }
-}

@@ -1,4 +1,9 @@
 .typer-cont {
+    --typer-background-color: rgb(199, 194, 202);
+
+    border-radius: 5px;
+    background-color: var(--typer-background-color);
+
     .text-t {
         display: flex;
         align-items: center;
@@ -42,17 +47,21 @@
     top: 0px;
     right: 0px;
     bottom: 0px;
-    -webkit-box-shadow: inset 20px 0px 15px 0px rgba(182,176,189,1);
-    -moz-box-shadow: inset 20px 0px 15px 0px rgba(182,176,189,1);
-    box-shadow: inset 20px 0px 15px 0px rgba(182,176,189,1);    
+    -webkit-box-shadow: inset 20px 0px 15px 0px var(--typer-background-color);
+    -moz-box-shadow: inset 20px 0px 15px 0px var(--typer-background-color);
+    box-shadow: inset 20px 0px 15px 0px var(--typer-background-color);    
     pointer-events: none;
+}
+
+.empty-text-past {
+    color: #ffd400;
 }
 
 .right-letter {
     justify-content: center;
     width: 12px !important;
     height: 44px !important;
-    background-color: rgb(156, 150, 162);
+    background-color: #a6a2a9;
     border: 1px solid transparent;
     border-radius: 3px;
 }
@@ -89,12 +98,32 @@
     top: 0px;
     right: 0px;
     bottom: 0px;
-    -webkit-box-shadow: inset -20px 0px 15px 0px rgba(182,176,189,1);
-    -moz-box-shadow: inset -20px 0px 15px 0px rgba(182,176,189,1);
-    box-shadow: inset -20px 0px 15px 0px rgba(182,176,189,1);   
+    -webkit-box-shadow: inset -20px 0px 15px 0px var(--typer-background-color);
+    -moz-box-shadow: inset -20px 0px 15px 0px var(--typer-background-color);
+    box-shadow: inset -20px 0px 15px 0px var(--typer-background-color);   
     pointer-events: none;
 }
 
-#second-info {
-   
+#typer-cur-speed-diagram {
+    width: 10px;
+    height: 20px;
+    background-color: black;
+    transition: 8s;
+}
+
+#typer-progress {
+    display: flex;
+    justify-content: center;
+    background-color: #ffd400;
+
+    div {
+        width: 80%;
+        background-color: #1cc524;
+
+        div {
+            width: 1%;
+            background-color: #c51c1c;
+            //padding-left: 99%;
+        }
+    }
 }
