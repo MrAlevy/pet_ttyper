@@ -4,7 +4,8 @@ import './styles/typer.scss';
 export const TyperMain = (props) => {
     const { 
         isErrorLetter, rightLetter, rightText, rightTextPast, 
-        mistakes, lettersEntered, avgSpeed, curSpeed, TEXT_LENGTH
+        mistakes, lettersEntered, avgSpeed, curSpeed, 
+        screenWidth, TEXT_LENGTH
     } = props.state;
     
     const {
@@ -13,6 +14,19 @@ export const TyperMain = (props) => {
 
     // calc mistakes persentage
     let miss = Math.round(10* (100*mistakes/lettersEntered) )/10
+
+    // function for decrease width of speed diagram depends on current value of speed
+    const speedWidth = (speedType) => {
+        let maxDiagramWidth = (2)*0.7*(screenWidth > 1000 ? 929 : screenWidth*0.95)/2
+        let maxSpeed = Math.max(avgSpeed, curSpeed);
+        let coef = (maxSpeed>bestSpeed ? bestSpeed/maxSpeed : 1)*maxDiagramWidth
+        return coef*speedType/bestSpeed + 'px' || 0
+    }
+
+    // width of one delay of speed graph background
+    const gradWidth = () => {
+        return 6
+    }
 
     return (
         <div className='dataCont typer-cont'>
@@ -35,10 +49,10 @@ export const TyperMain = (props) => {
 
             <div id='typer-speed-diagram'>
                 <div>
-                    <div id='avg-speed' style={{width: avgSpeed*0.5 || 0}}>
+                    <div id='avg-speed' className={`${curSpeed < avgSpeed && 'avg-speed-lose'}`} style={{width: speedWidth(avgSpeed)}}>
                         <span id='avg-speed-label'>{avgSpeed}</span>
-                        <div id='cur-speed' style={{width: curSpeed*0.5 || 0}}>
-                            <div id='best-speed' style={{width: bestSpeed*0.5 || 0}}>
+                        <div id='cur-speed' style={{width: speedWidth(curSpeed)}}>
+                            <div id='best-speed' style={{width: speedWidth(bestSpeed)}}>
                                 <span>
                                     <span>
                                         {bestSpeed}
@@ -53,14 +67,7 @@ export const TyperMain = (props) => {
                     </div>
                     <div 
                         id='speed-color-background'
-                        style={ 
-                            avgSpeed < bestSpeed 
-                                ? {
-                                    background: 'repeating-linear-gradient(90deg, #61292b00, #85b56c00 1px, #bfb9c200 0px, #6e686f1f 6px) fixed',
-                                } : {
-                                    background: 'repeating-linear-gradient(90deg, rgba(97, 41, 43, 0), rgba(133, 181, 108, 0) 1px, rgba(191, 185, 194, 0) 0px, rgba(8, 148, 31, 0.17) 6px) fixed',
-                                }
-                            }
+                        style={{background: `repeating-linear-gradient(90deg, #61292b00, #85b56c00 1px, #bfb9c200 0px, #6e686f1f ${gradWidth()}px) fixed`}}
                     >
                     </div>
                 </div>

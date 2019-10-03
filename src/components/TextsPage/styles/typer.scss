@@ -117,6 +117,7 @@
     div {
         display: flex;
         width: 70%;
+        max-width: 653px;
         height: 100%;
 
         #speed-color-background {
@@ -124,13 +125,13 @@
         }
 
         #avg-speed {
-            display: flex !important;;
+            display: flex !important;
             flex-direction: column;
-            transition: 3s;
-            transition-timing-function: line;
+            transition: width 3s, background-color 1s;
+            transition-timing-function: ease-in-out;
             display: inline-block;
             height: 100%;
-            background-color: rgba(41, 144, 12, 0.42);
+            background-color: rgb(132, 179, 120);
             border-right: 3px solid rgba(26, 101, 5, 0.49);
 
             #avg-speed-label {
@@ -148,8 +149,8 @@
                 transition-timing-function: ease;
                 width: 0%;
                 height: 100%;
-                background-color: rgba(255, 0, 0, 0.1);
-                border-right: 1px solid rgba(152, 0, 0, 0.38);
+                background-color: rgba(113, 171, 98, 0.25);
+                border-right: 1px solid rgba(26, 101, 5, 0.49);
 
                 #best-speed {
                     display: flex;
@@ -157,6 +158,8 @@
                     border-right: 1px solid #cc000085;
                     height: 250%;
                     margin-top: -20px;
+                    transition: 3s;
+                    transition-timing-function: line;
 
                     span {
                         position: absolute;
@@ -178,6 +181,10 @@
                     }
                 }
             }
+        }
+
+        .avg-speed-lose {
+            background-color: rgba(165, 175, 163, 0.77) !important;
         }
     }
 }

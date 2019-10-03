@@ -29,6 +29,7 @@ class Typer extends React.Component {
             curSpeed: 0,
             lettersEnteredSnapShot: 0,
 
+            screenWidth: window.innerWidth,
             TEXT_LENGTH: 0
         }
     }
@@ -38,10 +39,13 @@ class Typer extends React.Component {
         this.props.getTextsFetch('textById', this.props.match.params.id);
         // listen keyboard for typing
         document.addEventListener('keydown', this.handleKeyPress);
+        // listen window to resize
+        window.addEventListener("resize", this.handleResize);
     }
 
     componentWillUnmount() {
         document.removeEventListener('keydown', this.handleKeyPress);
+        window.removeEventListener("resize", this.handleResize);
         // clear intervals
         this.clearIntervals();
     }
@@ -83,6 +87,10 @@ class Typer extends React.Component {
         clearInterval(this.timerInterval);
         clearInterval(this.avgSpeedInterval);
         clearInterval(this.curSpeedInterval);
+    }
+
+    handleResize = () => {
+        this.setState({ screenWidth: window.innerWidth })
     }
 
     /**
