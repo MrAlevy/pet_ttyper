@@ -51,7 +51,10 @@ export const TyperMain = (props) => {
 
             <div id='typer-speed-diagram'>
                 <div>
-                    <div id='avg-speed' className={`${curSpeed < avgSpeed && 'avg-speed-lose'}`} style={{width: speedWidth(avgSpeed)}}>
+                    <div id='avg-speed' 
+                        className={`${curSpeed < avgSpeed && 'avg-speed-lose'} ${bestSpeed < avgSpeed && 'avg-speed-win'}`} 
+                        style={{width: speedWidth(avgSpeed)}}
+                    >
                         <span id='avg-speed-label'>{avgSpeed}</span>
                         <div id='cur-speed' style={{width: speedWidth(curSpeed)}}>
                             <div id='best-speed' style={{width: speedWidth(bestSpeed)}}>
