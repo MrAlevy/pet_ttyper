@@ -20,6 +20,8 @@ export const TyperMain = (props) => {
         let maxDiagramWidth = (2)*0.7*(screenWidth > 1000 ? 929 : screenWidth*0.95)/2
         let maxSpeed = Math.max(avgSpeed, curSpeed);
         let coef = (maxSpeed>bestSpeed ? bestSpeed/maxSpeed : 1)*maxDiagramWidth
+        if (Math.abs(maxSpeed - bestSpeed) >= 150) {coef = 1*coef}
+        if (Math.abs(maxSpeed - bestSpeed) < 150) {coef = (0.5+Math.abs(maxSpeed - bestSpeed)/300)*coef}
         return coef*speedType/bestSpeed + 'px' || 0
     }
 
