@@ -1,0 +1,98 @@
+#text-typer-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 80px;
+}
+
+.text-t {
+    display: flex;
+    align-items: center;
+    font: 23px 'Ubuntu Mono', monospace, Arial, Helvetica, sans-serif;
+    width: 48.5%;
+    height: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+#right-text-line {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+.right-text-past {
+    justify-content: flex-end;
+    white-space: pre !important;
+    color: rgba(0, 0, 0, 0.329);
+    background-color: rgba(0, 0, 0, 0.438);
+    position: relative;
+}
+
+.right-text-past:before {
+    content: '';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    -webkit-box-shadow: inset 20px 0px 15px 0px var(--typer-background-color);
+    -moz-box-shadow: inset 20px 0px 15px 0px var(--typer-background-color);
+    box-shadow: inset 20px 0px 15px 0px var(--typer-background-color);    
+    pointer-events: none;
+}
+
+.empty-text-past {
+    color: #c7c2ca;
+}
+
+.right-letter {
+    justify-content: center;
+    width: 12px !important;
+    height: 44px !important;
+    background-color: #a6a2a9;
+    border: 1px solid transparent;
+    border-radius: 3px;
+}
+
+.right-letter-error {
+    background-color: #ca8888d6;
+    color: #610000;
+    position: relative;
+    border-color: #fc000059;
+}
+.right-letter-error:before {
+    content: '';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    -webkit-box-shadow: inset 0px 5px 5px 0px #fc000059, inset 0px -5px 5px 0px #fc000059; 
+    -moz-box-shadow: inset 0px 5px 5px 0px #fc000059, inset 0px -5px 5px 0px #fc000059; 
+    box-shadow: inset 0px 5px 5px 0px #fc000059, inset 0px -5px 5px 0px #fc000059; 
+    pointer-events: none;
+}
+
+.right-text {
+    white-space: pre !important;
+    background-color: rgba(0, 0, 0, 0.166);
+    position: relative;
+}
+
+.right-text:after {
+    content: '';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    -webkit-box-shadow: inset -20px 0px 15px 0px var(--typer-background-color);
+    -moz-box-shadow: inset -20px 0px 15px 0px var(--typer-background-color);
+    box-shadow: inset -20px 0px 15px 0px var(--typer-background-color);   
+    pointer-events: none;
+}

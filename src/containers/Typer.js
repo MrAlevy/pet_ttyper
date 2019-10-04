@@ -155,9 +155,9 @@ class Typer extends React.Component {
                     lettersEntered: this.state.lettersEntered + 1,
                 }, () => {
                     // if already right string is bigger than 40 symbols - cut it
-                    if (this.state.rightTextPast.length >= 40) {
+                    if (this.state.rightTextPast.length > this.state.screenWidth/27) {
                         this.setState({
-                            rightTextPast: this.state.rightTextPast.slice(1),
+                            rightTextPast: this.state.rightTextPast.slice(1,)
                         })
                     }
                 }
@@ -177,6 +177,19 @@ class Typer extends React.Component {
 
                 // remove listener
                 document.removeEventListener('keydown', this.handleKeyPress);
+
+                // !!!TEMPORARY!!! - if best speed - asking for a save in db
+                // *****
+                // **
+                if (this.state.avgSpeed > this.props.textFetch.texts.bestSpeed) {
+                    setTimeout(() => {
+                        let userName = prompt('Вы показали лучшую скорость! К сожалению, здесь пока осутствует возможность авторизации, но Вы можете просто ввести свое имя ниже, и оно будет сохранено в базу данных: ','');
+                        if (userName != '') { this.saveRecord(userName) }
+                    }, 3000)
+                }
+                // **
+                // *****
+                // !!!TEMPORARY!!! - end
             }
 
         // if input letter is wrong
@@ -190,6 +203,22 @@ class Typer extends React.Component {
     /**
     * main typing algorithm's end
     */
+
+    // save new best speed and user into db
+    saveRecord = (userName) => {
+        fetch(`http://localhost:3001/api/texts/update/${this.props.textFetch.texts._id}`, {
+            method: 'POST',
+            body: JSON.stringify({
+                bestSpeed: this.state.avgSpeed,
+                bestSpeedOwner: userName,
+                bestSpeedOwnerMistakes: this.state.mistakes
+            }),
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json'
+            }
+        }).catch(err => console.log(err))
+    }
 
     render() {
         return (

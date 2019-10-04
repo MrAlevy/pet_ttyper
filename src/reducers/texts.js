@@ -4,7 +4,8 @@ import {
     GET_TEXTS_ERROR,
     SORT_BY_FILTER,
     ALPHABET_FILTER,
-    SEARCH_FILTER
+    SEARCH_FILTER,
+    UPDATE_TEXT,
 } from '../constants/ActionTypes'
 
 export const texts = (state={}, action) => {

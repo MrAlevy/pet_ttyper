@@ -5,7 +5,8 @@ import {
     GET_TEXTS_FETCH,
     SORT_BY_FILTER,
     ALPHABET_FILTER,
-    SEARCH_FILTER
+    SEARCH_FILTER,
+    UPDATE_TEXT,
 } from '../constants/ActionTypes'
 
 export const getTextsFetch = (whatsFetching, id, sortBy = 'nosort', alphabet = 'noalphabet', search = 'nosearch') => ({
@@ -46,3 +47,9 @@ export const setSearchFilter = (keyWords) => ({
     type: SEARCH_FILTER,
     payload: keyWords
 })
+
+export const updateText = (textFields) => ({
+    type: UPDATE_TEXT,
+    payload: textFields
+})
+

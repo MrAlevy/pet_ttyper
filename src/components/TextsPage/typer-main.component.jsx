@@ -1,5 +1,7 @@
 import React from 'react';
 import './styles/typer.scss';
+import './styles/typer-text-line.scss';
+import './styles/typer-speed-diagram.scss';
 
 export const TyperMain = (props) => {
     const { 
@@ -9,7 +11,7 @@ export const TyperMain = (props) => {
     } = props.state;
     
     const {
-        caption, rate, owner, bestSpeed, bestSpeedOwner
+        caption, rate, owner, bestSpeed, bestSpeedOwner, bestSpeedOwnerMistakes
     } = props.textInfo;
 
     // calc mistakes persentage
@@ -30,67 +32,85 @@ export const TyperMain = (props) => {
         return 6
     }
 
+
     return (
         <div className='dataCont typer-cont'>
 
-            <div id='text-typer-main-info'>
-                <h1>{caption}</h1>
-            </div>
-
-            <div>
-                <div id='text-typer-rate'>
-                    <div>stars: <div>{rate}</div></div> 
-                    <div>owner: <div>{owner}</div></div> 
+            <div id='text-typer-info'>
+                <div id='text-typer-main-info'>
+                    <h1>{caption}</h1>
                 </div>
-
-            </div>
-
-            <div id='text-typer-cur-data'>
-                <div>miss: <div>{miss < 100 ? miss : miss >= 100 ? 100 : 0}</div>%</div>
-            </div>
-
-            <div id='typer-speed-diagram'>
-                <div>
-                    <div id='avg-speed' 
-                        className={`${curSpeed < avgSpeed && 'avg-speed-lose'} ${bestSpeed < avgSpeed && 'avg-speed-win'}`} 
-                        style={{width: speedWidth(avgSpeed)}}
-                    >
-                        <span id='avg-speed-label'>{avgSpeed}</span>
-                        <div id='cur-speed' style={{width: speedWidth(curSpeed)}}>
-                            <div id='best-speed' style={{width: speedWidth(bestSpeed)}}>
-                                <span>
-                                    <span>
-                                        {bestSpeed}
-                                    </span>
-                                    <span>
-                                        <span>by</span>
-                                        {bestSpeedOwner}
-                                    </span>
-                                </span>
+    
+                <div id='text-typer-rate'>
+                    <div><span>rate:</span><div>{rate}</div></div> 
+                    <div><span>owner:</span><div>{owner}</div></div> 
+                </div>
+    
+                <div id='text-typer-miss'>
+                    <div>
+                        <span>miss:</span>
+                        <div id='miss-value'>
+                            <div>
+                                <div>
+                                    {bestSpeedOwnerMistakes ? bestSpeedOwnerMistakes : 0} %
+                                </div>
+                                <span>({bestSpeedOwner})</span>
+                            </div>
+                            <div>
+                                <div>
+                                    {miss ? miss : 0} % 
+                                </div>
+                                <span>(you)</span>
                             </div>
                         </div>
                     </div>
-                    <div 
-                        id='speed-color-background'
-                        style={{background: `repeating-linear-gradient(90deg, #61292b00, #85b56c00 1px, #bfb9c200 0px, #6e686f1f ${gradWidth()}px) fixed`}}
-                    >
-                    </div>
                 </div>
             </div>
 
-            <div id='text-typer-cont'>
-                <div id='right-text-line'>
-                    <div className={'text-t right-text-past ' + (!rightTextPast && 'empty-text-past')}>
-                        {rightTextPast ? rightTextPast : 'press space to start '}
+            <div>
+                <div id='typer-speed-diagram'>
+                    <div>
+                        <div id='avg-speed' 
+                            className={`${curSpeed < avgSpeed && 'avg-speed-lose'} ${bestSpeed < avgSpeed && 'avg-speed-win'}`} 
+                            style={{width: speedWidth(avgSpeed)}}
+                        >
+                            <span id='avg-speed-label'>{avgSpeed}</span>
+                            <div id='cur-speed' style={{width: speedWidth(curSpeed)}}>
+                                <div id='best-speed' style={{width: speedWidth(bestSpeed)}}>
+                                    <span>
+                                        <span>
+                                            {bestSpeed}
+                                        </span>
+                                        <span>
+                                            <span>by</span>
+                                            {bestSpeedOwner}
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div 
+                            id='speed-color-background'
+                            style={{background: `repeating-linear-gradient(90deg, #61292b00, #85b56c00 1px, #bfb9c200 0px, #6e686f1f ${gradWidth()}px) fixed`}}
+                        >
+                        </div>
                     </div>
-                    <div className={isErrorLetter ? 'text-t right-letter right-letter-error' : 'text-t right-letter'}>{rightLetter}</div>
-                    <div className='text-t right-text'>{rightText && rightText.slice(0, 35)}</div>
                 </div>
-            </div>
-
-            <div id='typer-progress'>
-                <div>
-                    <div style={{width: ((100*lettersEntered/TEXT_LENGTH) || 0) + '%'}}>
+    
+                <div id='text-typer-cont'>
+                    <div id='right-text-line'>
+                        <div className={'text-t right-text-past ' + (!rightTextPast && 'empty-text-past')}>
+                            {rightTextPast ? rightTextPast : 'press space to start '}
+                        </div>
+                        <div className={isErrorLetter ? 'text-t right-letter right-letter-error' : 'text-t right-letter'}>{rightLetter}</div>
+                        <div className='text-t right-text'>{rightText && rightText.slice(0, 40)}</div>
+                    </div>
+                </div>
+    
+                <div id='typer-progress'>
+                    <div>
+                        <div style={{width: ((100*lettersEntered/TEXT_LENGTH) || 0) + '%'}}>
+                        </div>
                     </div>
                 </div>
             </div>

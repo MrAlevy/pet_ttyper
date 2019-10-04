@@ -6,3 +6,5 @@ export const GET_TEXTS_ERROR = 'GET_TEXTS_ERROR';
 export const SORT_BY_FILTER = 'SORT_BY_FILTER';
 export const ALPHABET_FILTER = 'ALPHABET_FILTER';
 export const SEARCH_FILTER = 'SEARCH_FILTER';
+
+export const UPDATE_TEXT = 'UPDATE_TEXT';

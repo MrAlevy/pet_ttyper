@@ -25,11 +25,25 @@ router.route('/add').post((req, res) => {
   const newText = new Text(
     req.body
   );
-
   newText.save()
     .then(() => res.json('Text added!'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
+
+// update text
+router.route('/update/:id').post((req, res) => {
+  console.log(req.params.id)
+  Text.findById(req.params.id, req.body.bestSpeedOwner)
+    .then(text => {
+      console.log(text, req.body)
+      text.bestSpeedOwner = req.body.bestSpeedOwner;
+      text.save()
+        .then(() => res.json('server: text updated'))
+        .catch(err => res.status(400).json('server error: ' + err));
+    })
+    .catch(err => res.status(400).json('server error: ' + err));
+});               
+              
 
 /* router.route('/:id').get((req, res) => {
   Exercise.findById(req.params.id)
