@@ -71,6 +71,22 @@
         font-size: 5vh;
     }
 }
+::-webkit-scrollbar {
+    width: 0px;
+}
+::-webkit-scrollbar-button {
+width: 10px;
+height: 5%;
+}
+::-webkit-scrollbar-thumb {
+background: #6e6e6e;
+border-radius: 5px 0 0 5px;
+}
+
+::-webkit-scrollbar-track {
+background: #57575760;
+border-radius: 5px 0 0 5px;
+}
 
 #text-cont {
     --main-font-family: 'Source Sans Pro', "Segoe UI", sans-serif;
