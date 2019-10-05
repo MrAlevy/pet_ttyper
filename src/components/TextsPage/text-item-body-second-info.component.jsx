@@ -22,11 +22,11 @@ export const TextItemBodySecondInfo = (props) => {
             <span>{datePretty || '-'}</span> 
             <span>
                 <span id='speed'>
-                    000
+                    000 {/* temp zero values */}
                 </span> 
                 <span className='lbl sep'>{' / '}</span>
                 <span id='mist'>
-                    {`0,00%`}
+                    {`0,00%`} {/* temp zero values */}
                 </span> 
             </span>
             <span id='best-speed-cont'>
@@ -35,7 +35,7 @@ export const TextItemBodySecondInfo = (props) => {
                 </span> 
                 <span className='lbl sep'>{' / '}</span>
                 <span id='mist'>
-                    {`${bestSpeedOwnerMistakes}%`}
+                    {`${bestSpeedOwnerMistakes || '0,0'}%`}
                 </span> 
             </span>
             <span id='bs'>

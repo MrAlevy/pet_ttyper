@@ -16,7 +16,6 @@ export const Text = (props) => {
                 <Redirect 
                     to={{
                         pathname: `/texts/type/${_id}`,
-                      //  state: props.text - replace on fetching text by id
                     }} 
                 />
             : 

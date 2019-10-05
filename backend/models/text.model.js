@@ -11,12 +11,14 @@ const textSchema = new Schema({
         type: String,
         required: true,
         trim: true,
-        minlength: 25,
     },
     bodyShort: {
         type: String,
         required: true,
         trim: true,
+    },
+    words: {
+        type: Number,
     },
     tags: {
         type: String,
@@ -38,9 +40,7 @@ const textSchema = new Schema({
     },
     bestSpeedOwnerMistakes: {
         type: String,
-    },
-    yourSpeed: {type: Number}, // for TESTING
-    yourMistakes: {type: String} // for TESTING
+    }
 }, {
     timestamps: true
 });

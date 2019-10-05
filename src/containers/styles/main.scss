@@ -68,9 +68,10 @@
     background-color: rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     margin-top: 20px;
-
+    overflow-x: hidden;
 }
 
+.main-cont
 .typer-gray-mode {
     filter: grayscale(100%) contrast(60%) brightness(80%);
 }

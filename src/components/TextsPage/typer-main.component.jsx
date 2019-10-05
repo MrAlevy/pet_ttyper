@@ -15,7 +15,7 @@ export const TyperMain = (props) => {
     } = props.textInfo;
 
     // calc mistakes persentage
-    let miss = Math.round(10* (100*mistakes/lettersEntered) )/10
+    let miss = Math.round(10* (100*mistakes/(lettersEntered || 1)) )/10
 
     // function for decrease width of speed diagram depends on current value of speed
     const speedWidth = (speedType) => {
@@ -57,7 +57,7 @@ export const TyperMain = (props) => {
                                 <span>({bestSpeedOwner})</span>
                             </div>
                             <div>
-                                <div>
+                                <div id='yourMiss'>
                                     {miss ? miss : 0} % 
                                 </div>
                                 <span>(you)</span>
@@ -103,7 +103,19 @@ export const TyperMain = (props) => {
                             {rightTextPast ? rightTextPast : 'press space to start '}
                         </div>
                         <div className={isErrorLetter ? 'text-t right-letter right-letter-error' : 'text-t right-letter'}>{rightLetter}</div>
-                        <div className='text-t right-text'>{rightText && rightText.slice(0, 40)}</div>
+                        <div className='text-t right-text'>
+                            {
+                                rightText 
+                                    ? rightText && rightText.slice(0, 40) 
+                                    : rightLetter
+                                        ? ''
+                                        : avgSpeed > bestSpeed
+                                            ? ' new record!'
+                                            : rightTextPast
+                                                ? ' good luck next time'
+                                                : ''
+                            }
+                        </div>
                     </div>
                 </div>
     

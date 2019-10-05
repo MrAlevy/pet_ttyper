@@ -183,13 +183,15 @@ class Typer extends React.Component {
                 // **
                 if (this.state.avgSpeed > this.props.textFetch.texts.bestSpeed) {
                     setTimeout(() => {
-                        let userName = prompt('Вы показали лучшую скорость! К сожалению, здесь пока осутствует возможность авторизации, но Вы можете просто ввести свое имя ниже, и оно будет сохранено в базу данных: ','');
-                        if (userName != '') { this.saveRecord(userName) }
-                    }, 3000)
+                        let userName = prompt('Вы показали лучшую скорость! К сожалению, на сайте пока осутствует возможность регистрации, но Вы можете просто ввести здесь свое имя, и оно будет присвоено best speed: ','');
+                        userName && this.saveRecord(userName)
+                    }, 1500)
                 }
                 // **
                 // *****
                 // !!!TEMPORARY!!! - end
+
+                // goodbye to user
             }
 
         // if input letter is wrong
@@ -205,13 +207,16 @@ class Typer extends React.Component {
     */
 
     // save new best speed and user into db
+    // !!!TEMPORARY!!!
+    // *****
+    // **
     saveRecord = (userName) => {
         fetch(`http://localhost:3001/api/texts/update/${this.props.textFetch.texts._id}`, {
             method: 'POST',
             body: JSON.stringify({
                 bestSpeed: this.state.avgSpeed,
                 bestSpeedOwner: userName,
-                bestSpeedOwnerMistakes: this.state.mistakes
+                bestSpeedOwnerMistakes: Math.round(10* (100*this.state.mistakes/this.state.lettersEntered) )/10
             }),
             headers: {
                 'Accept': 'application/json',
@@ -219,6 +224,9 @@ class Typer extends React.Component {
             }
         }).catch(err => console.log(err))
     }
+    // **
+    // *****
+    // !!!TEMPORARY!!! - end
 
     render() {
         return (
