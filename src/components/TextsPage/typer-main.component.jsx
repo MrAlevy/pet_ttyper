@@ -17,14 +17,33 @@ export const TyperMain = (props) => {
     // calc mistakes persentage
     let miss = Math.round(10* (100*mistakes/(lettersEntered || 1)) )/10
 
-    // function for decrease width of speed diagram depends on current value of speed
+    // function for decrease width of speed diagram depends on current value of speed and current screen width
+        /**
+         * 1. calc the max diagram width - it's a width of the gray line, which can be changing cause screen shrink;
+         * 2. calc the lead of speeds - is it avg or current;
+         * 3. calc the decreasing coefficient:
+         *      if best speed is exist: 
+         *          if max speed bigger best speed more then 150 - max speed will be spread on full width of the line;
+         *          if not - from zero to one - the func of coef will be: coef = 0.5 + (0 to 0.5) 
+         *              which means that max speed will be spread from the middle to full width of the line,
+         *              cause on abs value of difference of max and best speeds
+         *      if best speed isn't exist:
+         *          max speed spread on full width;
+         */
     const speedWidth = (speedType) => {
-        let maxDiagramWidth = (2)*0.7*(screenWidth > 1000 ? 929 : screenWidth*0.95)/2
+        let maxDiagramWidth = 0.7*(screenWidth > 1000 ? 929 : screenWidth*0.95)
         let maxSpeed = Math.max(avgSpeed, curSpeed);
-        let coef = (maxSpeed>bestSpeed ? bestSpeed/maxSpeed : 1)*maxDiagramWidth
-        if (Math.abs(maxSpeed - bestSpeed) >= 150) {coef = 1*coef}
-        if (Math.abs(maxSpeed - bestSpeed) < 150) {coef = (0.5+Math.abs(maxSpeed - bestSpeed)/300)*coef}
-        return coef*speedType/bestSpeed + 'px' || 0
+        if (bestSpeed) {
+            let coef = (maxSpeed>bestSpeed ? bestSpeed/maxSpeed : 1)*maxDiagramWidth
+            if (Math.abs(maxSpeed - bestSpeed) >= 150) {coef = 1*coef}
+            if (Math.abs(maxSpeed - bestSpeed) < 150) {coef = (0.5+Math.abs(maxSpeed - bestSpeed)/300)*coef}
+            return coef*speedType/bestSpeed + 'px' || 0
+        } else {
+            if (speedType === bestSpeed || speedType === 0) {return 0}
+            let coef = maxDiagramWidth
+            if (maxSpeed < maxDiagramWidth) {coef = coef*maxSpeed/maxDiagramWidth}
+            return coef*speedType/maxSpeed + 'px' || 0
+        }
     }
 
     // width of one delay of speed graph background

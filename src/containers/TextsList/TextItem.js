@@ -6,7 +6,7 @@ export const Text = (props) => {
     // isTypingStart - redirect to start to type, if false - render text preview
     const [isTypingStart, setIsTypingStart] = useState(false);
 
-    const showModal = () => setIsTypingStart(true)
+    const startTyping = () => setIsTypingStart(true)
     
     const { _id } = props.text;
 
@@ -19,6 +19,6 @@ export const Text = (props) => {
                     }} 
                 />
             : 
-                <TextItemBody text={props.text} onClick={showModal}/>
+                <TextItemBody text={props.text} onClick={startTyping}/>
     );
 } 

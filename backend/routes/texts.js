@@ -21,9 +21,15 @@ router.route('/:id').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+// upload new text
 router.route('/add').post((req, res) => {
+  console.log(req.body)
   const newText = new Text(
-    req.body
+    {
+      ...req.body,
+      bodyShort: bodyShort(req.body.bodyFull),
+      words: words(req.body.bodyFull)
+    }
   );
   newText.save()
     .then(() => res.json('Text added!'))
@@ -50,6 +56,12 @@ router.route('/:id').delete((req, res) => {
     .then(() => res.json('Text deleted.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
+*/
+
+
+/**
+ *  functions for searching
+ * 
 */
 
 // add alphabet filter
@@ -86,5 +98,17 @@ const sortByFilter = (sort) => {
     default: return {}
   }
 }
+
+/**
+ *  functions for upload new text
+ * 
+*/
+
+// trim bodyFull for bodyShort
+const bodyShort = (bodyFull) => {
+  return bodyFull.length > 420 ? bodyFull.slice(0, 420) + ' . . .' : bodyFull
+}
+
+const words = bodyFull => bodyFull.split(' ').length
 
 module.exports = router;

@@ -14,7 +14,6 @@ const textSchema = new Schema({
     },
     bodyShort: {
         type: String,
-        required: true,
         trim: true,
     },
     words: {

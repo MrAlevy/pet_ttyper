@@ -1,90 +1,46 @@
 import React, { useState } from 'react';
-import Modal from 'react-modal';
-import './text-add-modal.scss';
+import { TextFilter } from '../../components/TextsPage/text-filter.component';
+import { UploadTextModal } from '../../components/UploadTextModal/upload-text-modal.component';
 
 const handleClick = (e) => {
+    // temporary
     console.log(e.target)
 }
 
-Modal.setAppElement('#root');
+const handleUpload = (caption, bodyFull, tags, language) => {
+    fetch(`http://localhost:3001/api/texts/add/`, {
+            method: 'POST',
+            body: JSON.stringify({
+                caption,
+                bodyFull,
+                tags,
+                language
+            }),
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json'
+            }
+        }).catch(err => console.log(err))
+}
 
-export const TextsFilterPanel = () => { 
+export const TextsFilterPanel = () => {
+    // if true - show modal window for upload new text
     const [showModal, setShowModal] = useState(false);
 
     return (    
         <div className='main-menu texts-filter'>
-            <div className='main-menu-items'>
-                <div                            
-                    name='my' 
-                    className='main-menu-item'
-                    onClick={(e) => handleClick(e)} 
-                >
-                    My
-                </div>
-                <div className='separator'>
-                    |
-                </div>
-                <div
-                    name='global' 
-                    className='main-menu-item' 
-                    onClick={(e) => handleClick(e)}
-                >
-                    Global
-                </div>
-                <div className='separator'>
-                    |
-                </div>
-                <div
-                    name='favorites' 
-                    className='main-menu-item' 
-                    onClick={(e) => handleClick(e)}
-                >
-                    Favorites
-                </div>
-            </div>
+            
+            <TextFilter handleClick={handleClick} />
+
             <div className='texts-add-button'>
                 <button className='addBtn' onClick={() => setShowModal(true)}>upload</button>
-                <Modal 
-                    isOpen={showModal}
-                    onRequestClose={() => setShowModal(false)}
-                    shouldCloseOnOverlayClick={true}
-                    className='Modal'
-                    overlayClassName='Overlay'
-                    contentLabel="Upload new text."
-                >
-                    <div className='addTextField'>
-                        <div id='addHead'>
-                            <span>Title: </span>
-                            <input></input>
-                        </div>
-                        <div id='addBody'>
-                            <span>Text: </span>
-                            <textarea></textarea>
-                        </div>
-                        <div id='addTags'>
-                            <span>Tags: </span>
-                            <input></input>
-                        </div>
-                        <div id='addAlph'>
-                            <span>Alphabet: </span><br/>
-                            <select                            
-                                name='language' 
-                                className='second-menu-item language'
-                            >
-                                <option value=''>-</option>
-                                <option value='latin'>latin</option>
-                                <option value='cyrillic'>cyrillic</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button 
-                        className='addBtnModal'
-                        onClick={() => setShowModal(false)}
-                    >
-                        upload
-                    </button>
-                </Modal>
+                <UploadTextModal 
+                    showModal={showModal} 
+                    setShowModal={setShowModal}
+                    handleUpload={handleUpload}
+                />
             </div> 
+
         </div>
     );
 }

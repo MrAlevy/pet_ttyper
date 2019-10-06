@@ -24,7 +24,7 @@ class TextsList extends React.Component {
     render() {
         let textsList = []
 
-        // if texts load in props complete - forming the list
+        // if texts successfull load in props (texts.length is exist) - form the text list
         if (this.props.texts.length) { 
             const texts = this.props.texts
 
