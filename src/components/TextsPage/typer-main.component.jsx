@@ -128,7 +128,7 @@ export const TyperMain = (props) => {
                                     ? rightText && rightText.slice(0, 40) 
                                     : rightLetter
                                         ? ''
-                                        : avgSpeed > bestSpeed
+                                        : avgSpeed > (bestSpeed || 0)
                                             ? ' new record!'
                                             : rightTextPast
                                                 ? ' good luck next time'
