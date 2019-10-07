@@ -32,7 +32,7 @@ function* getTextsFetchAsync(action) {
                     res = await fetch(`/api/texts/?sortBy=${sortByFilter}&alphabet=${alphabetFilter}&search=${searchFilter}`)
                     break;
                 case 'textById':
-                    res = await fetch(`http://localhost:3001/api/texts/${action.id}`)
+                    res = await fetch(`/api/texts/${action.id}`)
                     break;
             }
 

@@ -211,7 +211,7 @@ class Typer extends React.Component {
     // *****
     // **
     saveRecord = (userName) => {
-        fetch(`http://localhost:3001/api/texts/update/${this.props.textFetch.texts._id}`, {
+        fetch(`/api/texts/update/${this.props.textFetch.texts._id}`, {
             method: 'POST',
             body: JSON.stringify({
                 bestSpeed: this.state.avgSpeed,
