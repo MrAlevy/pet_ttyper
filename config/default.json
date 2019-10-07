@@ -1,0 +1,3 @@
+{
+    "mongoURI": "mongodb+srv://alevy:dbmongo0@cluster0-tk53d.mongodb.net/ttyper?retryWrites=true&w=majority"
+}

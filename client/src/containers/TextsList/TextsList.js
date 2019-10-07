@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { getTextsFetch } from '../../actions';
-import { Text } from './TextItem.js';
+import { Text } from './TextItem';
 import { Spinner } from '../../components/Additionals/spinner/spinner';
 
 const mapDispatchToProps = dispatch => ({
