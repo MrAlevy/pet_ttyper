@@ -12,7 +12,7 @@ export function* watchGetTexts() {
 }
 
 function* getTextsFetchAsync(action) {
-    
+    console.log(process.env)
     try {
         yield put(getTextsError(false))
         yield put(getTextsIsLoading(true))
