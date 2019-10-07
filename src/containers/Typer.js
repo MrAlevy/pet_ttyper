@@ -181,7 +181,6 @@ class Typer extends React.Component {
                 // !!!TEMPORARY!!! - if best speed - asking for a save in db
                 // *****
                 // **
-                console.log(this.state.avgSpeed, this.props.textFetch.texts.bestSpeed)
                 if (this.state.avgSpeed > (this.props.textFetch.texts.bestSpeed || 0)) {
                     setTimeout(() => {
                         let userName = prompt('Вы показали лучшую скорость! К сожалению, на сайте пока осутствует возможность регистрации, но Вы можете просто ввести здесь свое имя, и оно будет присвоено best speed: ','');
