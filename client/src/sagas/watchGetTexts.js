@@ -29,7 +29,7 @@ function* getTextsFetchAsync(action) {
             switch (action.whatsFetching) {
                 case 'allTexts':
                 default: 
-                    res = await fetch(`http://localhost:3001/api/texts/?sortBy=${sortByFilter}&alphabet=${alphabetFilter}&search=${searchFilter}`)
+                    res = await fetch(`/api/texts/?sortBy=${sortByFilter}&alphabet=${alphabetFilter}&search=${searchFilter}`)
                     break;
                 case 'textById':
                     res = await fetch(`http://localhost:3001/api/texts/${action.id}`)
