@@ -9,14 +9,25 @@ import { App } from './App';
 import './index.css'
 
 const sagaMiddleware = createSagaMiddleware();
+console.log(process.env.NODE_ENV !== 'development')
 
-const store = createStore(
-    rootReducer,
-    compose (
-        applyMiddleware(sagaMiddleware),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+// disable redux devtool on prod
+let store
+process.env.NODE_ENV !== 'development' 
+    ? store = createStore(
+        rootReducer,
+        compose (
+            applyMiddleware(sagaMiddleware)
+        )
     )
-)
+    : store = createStore(
+        rootReducer,
+        compose (
+            applyMiddleware(sagaMiddleware),
+            window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        )
+    )
+
 
 sagaMiddleware.run(watchGetTexts)
 
